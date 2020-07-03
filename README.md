@@ -1,6 +1,6 @@
-# CST-341-O500-CLC
+# CST-235-O500-CLC
 
-Collaboration repository for GCU's CST-341-O500 CLC project
+Collaboration repository for GCU's CST-235-O500 CLC project
 
 ## Key Contents
 
@@ -13,13 +13,13 @@ Collaboration repository for GCU's CST-341-O500 CLC project
 
 - TODO
 
-## Site Map
+## Example Site Map
 
-![Alt text](Milestone1/CLCSiteMap.png?raw=true 'Site Map')
+![Alt text](Milestone_Example/CLCSiteMap.png?raw=true 'Site Map')
 
-## UML Diagram
+## Example UML Diagram
 
-![Alt text](Milestone1/CST-341-CLC-UML.png?raw=true 'UML Diagram')
+![Alt text](Milestone_Example/CST-341-CLC-UML.png?raw=true 'UML Diagram')
 
 ## Tooling
 

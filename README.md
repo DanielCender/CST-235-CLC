@@ -15,11 +15,11 @@ Collaboration repository for GCU's CST-235-O500 CLC project
 
 ## Example Site Map
 
-![Alt text](Milestone_Example/CLCSiteMap.png?raw=true 'Site Map')
+![Alt text](Milestone_Example/CLCSiteMap.png?raw=true 'Site Map Example')
 
 ## Example UML Diagram
 
-![Alt text](Milestone_Example/CST-341-CLC-UML.png?raw=true 'UML Diagram')
+![Alt text](Milestone_Example/UML_Model_Diagrams.png?raw=true 'UML Diagram Example')
 
 ## Tooling
 

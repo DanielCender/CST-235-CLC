@@ -1,10 +1,10 @@
 package beans;
 
-import javax.annotation.ManagedBean;
-import javax.enterprise.context.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.view.ViewScoped;
 
-@ManagedBean
-@ApplicationScoped
+@ManagedBean(name="user")
+@ViewScoped
 public class User {
 	
 	private String firstName, lastName;

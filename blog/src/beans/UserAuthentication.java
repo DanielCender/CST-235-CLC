@@ -3,10 +3,12 @@ package beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.ManagedBean;
-import javax.enterprise.context.ApplicationScoped;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 
-@ManagedBean
+
+
+@ManagedBean(name="userAuthentication", eager=true)
 @ApplicationScoped
 public class UserAuthentication {
 	
@@ -19,6 +21,7 @@ public class UserAuthentication {
 		userList.add(new User("daniel", "cender", "danc", "danc", "dan@gmail.com"));
 		userList.add(new User("marc", "teixeira", "marct", "marct", "marc@gmail.com"));
 		userList.add(new User("tim", "james", "timj", "timj", "tim@gmail.com"));
+		userList.add(new User("chance", "anderson", "chancea", "chancea", "chance@gmail.com"));
 	}
 	
 	public void addUser(User user) {
@@ -33,6 +36,14 @@ public class UserAuthentication {
 		}
 		
 		return permission;
+	}
+
+	public List<User> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
 	}
 	
 }

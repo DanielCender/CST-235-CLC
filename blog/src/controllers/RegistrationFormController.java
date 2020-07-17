@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 
 import beans.User;
+import beans.UserAuthentication;
 
 @ManagedBean
 @ViewScoped
@@ -16,8 +17,8 @@ public class RegistrationFormController {
 
 	// temporary field to hold persistent list of users. Probably will not hold new
 	// values between runs.
-	@ManagedProperty(value = "#{users}")
-	private List<User> users;
+	@ManagedProperty(value = "#{userAuthentication}")
+	private UserAuthentication users;
 
 	String onSubmit(User newUser) {
 
@@ -25,7 +26,7 @@ public class RegistrationFormController {
 
 		// simulate database check for duplicate user. Some of the logic here will be
 		// moved into the DAO classes later
-		for (User user : users) {
+		for (User user : users.getUserList()) {
 			// check for duplicate userName
 			if (user.getUserName().equals(newUser.getUserName())) {
 
@@ -54,7 +55,7 @@ public class RegistrationFormController {
 			}
 		}
 
-		users.add(newUser);
+		users.addUser(newUser);
 
 		// if success go immediately to login
 		return ("login.xhtml");

@@ -7,6 +7,11 @@
 	<ui:composition template="layouts/layout.xhtml">
 		<ui:define name="content">
 			This is the User Registration page.
+				<h:form id="registrationForm">
+					<h:inputText id="userName" value="#{user.userName}" /> <h:message for="userName"/> <br/>
+					<h:inputText id="email" value="#{user.email}" /> <h:message for="email"/> <br/>
+					<h:commandButton value="Submit" action="#{registrationFormController.onSubmit(user)}"/>
+				</h:form>
 		</ui:define>
 	</ui:composition>
 </html>

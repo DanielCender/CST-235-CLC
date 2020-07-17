@@ -1,11 +1,18 @@
 package beans;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 
 @ManagedBean(name="user")
 @ViewScoped
-public class User {
+public class User implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private String firstName, lastName;
 	private String userName, password;

@@ -1,0 +1,39 @@
+@charset "ISO-8859-1";
+
+/*Field styling*/
+.input {
+	
+	background-color: #000000;
+	border: none;
+  	color: white;
+  	margin: 8px 0;
+	padding: 15px 20px;
+	width: 250px;
+}
+
+.input:hover {
+background-color: #808080;
+}
+
+.input:focus {
+  background-color: #2d2d2d;
+}
+
+.button {
+	
+	background-color: #000000; /* Black */
+	border: none;
+	color: white;
+	font-size: 24px;
+	margin: 8px 0;
+	padding: 10px 40px;
+	text-align: center;
+	transition-duration: 0.4s;
+	width: 290px
+}
+
+.button:hover {
+	
+	background-color: #ffffff; /* White */
+	color: black;
+}

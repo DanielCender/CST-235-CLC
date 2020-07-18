@@ -4,14 +4,31 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
+<h:head>
+	<title>Register</title>
+</h:head>
+<h:body>
 	<ui:composition template="layouts/layout.xhtml">
+	
 		<ui:define name="content">
-			This is the User Registration page.
+			
 				<h:form id="registrationForm">
-					<h:inputText id="userName" value="#{user.userName}" /> <h:message for="userName"/> <br/>
-					<h:inputText id="email" value="#{user.email}" /> <h:message for="email"/> <br/>
-					<h:commandButton value="Submit" action="#{registrationFormController.onSubmit(user)}"/>
+					<h:outputLabel><b>FIRST NAME</b></h:outputLabel>
+					<h:inputText id="firstName" value="#{user.firstName}" styleClass="input" /> <h:message for="firstName"/> <br/>
+					<h:outputLabel><b>LAST NAME</b></h:outputLabel>
+					<h:inputText id="lastName" value="#{user.lastName}" styleClass="input" /> <h:message for="lastName"/> <br/>
+					<h:outputLabel><b>EMAIL</b></h:outputLabel>
+					<h:inputText id="email" value="#{user.email}" styleClass="input" /> <h:message for="email"/> <br/>
+					<h:outputLabel><b>USERNAME</b></h:outputLabel>
+					<h:inputText id="userName" value="#{user.userName}" styleClass="input" /> <h:message for="userName"/> <br/>
+					<h:outputLabel><b>PASSWORD</b></h:outputLabel>
+					<h:inputSecret id="password" value="#{user.password}" styleClass="input" /> <h:message for="password"/> <br/>
+					
+					<h:commandButton value="REGISTER" action="#{registrationFormController.onSubmit(user)}" styleClass="button" />
 				</h:form>
+				
 		</ui:define>
+		
 	</ui:composition>
+</h:body>
 </html>

@@ -21,6 +21,11 @@ public class RegistrationFormController implements Serializable{
 	// values between runs. Must have a setter to work properly.
 	@ManagedProperty(value = "#{userAuthentication}")
 	private UserAuthentication users;
+	
+	// Setter for injected bean
+	public void setUsers(UserAuthentication users) {
+		this.users = users;
+	}
 
 	/**
 	 * Takes in submit request from registration form
@@ -79,10 +84,5 @@ public class RegistrationFormController implements Serializable{
 		}
 		
 		return result;
-	}
-
-	// Setter for injected bean
-	public void setUsers(UserAuthentication users) {
-		this.users = users;
 	}
 }

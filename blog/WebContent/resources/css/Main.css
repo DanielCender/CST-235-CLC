@@ -1,7 +1,8 @@
 @charset "ISO-8859-1";
 
-
+/* Some quick style resets */
 html {
+	height: 100%;
 	font-family: Arial, sans-serif;
 }
 
@@ -26,7 +27,6 @@ html {
 
 /*Field styling*/
 .input {
-	
 	background-color: #000000;
 	border: none;
   	color: white;
@@ -71,6 +71,12 @@ background-color: #808080;
 	bottom: 0;
 	width: 100%;
 	text-align: center;
+	margin-top: 50px;
+}
+
+.form__messages--error {
+	color: red;
+	display: block;
 }
 
 .formWrapper {

@@ -25,7 +25,8 @@
 				<h:outputLabel><h2>EMAIL</h2></h:outputLabel>
 				<h:inputText type="text" value="#{user.email}" styleClass="input"></h:inputText>
 				<h:outputLabel><h2>PASSWORD</h2></h:outputLabel>
-				<h:inputSecret  value="#{user.password}" styleClass="input"></h:inputSecret>
+				<h:inputSecret id="password" value="#{user.password}" styleClass="input"></h:inputSecret>
+				<h:message for="password" styleClass="form__messages--error" /> <br/>
 				<br/>
 				<br/>
 				<h:commandButton action="#{loginFormController.onSubmit(user)}" value="LOGIN" styleClass="button"></h:commandButton>
@@ -33,10 +34,7 @@
 				<h:button value="REGISTER" outcome="register.xhtml" styleClass="button"></h:button>
 				</div>
 			</h:form>
-			<h:messages/>
-			
 		</ui:define>
-		
 	</ui:composition>
 </h:body>
 </html>

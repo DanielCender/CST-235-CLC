@@ -24,29 +24,29 @@
 						<div class="regBlock">
 							<div style="display: block">
 								<h:outputLabel for="firstName"><b>FIRST NAME</b></h:outputLabel><br/>
-								<h:inputText id="firstName" value="#{user.firstName}" styleClass="input" /> <h:message for="firstName"/>
+								<h:inputText id="firstName" required="true" value="#{user.firstName}" styleClass="input" /> <h:message styleClass="form__messages--error" for="firstName"/>
 							</div>
 							<div style="display: block">
 								<h:outputLabel for="email"><b>EMAIL</b></h:outputLabel><br/>
-								<h:inputText id="email" value="#{user.email}" styleClass="input" /> <h:message for="email"/> <br/>
+								<h:inputText id="email" required="true" value="#{user.email}" styleClass="input" /> <h:message styleClass="form__messages--error" for="email"/> <br/>
 							</div>
 						</div>
 						
 						<div class="regBlock">
 							<div style="display: block">
 								<h:outputLabel><b>LAST NAME</b></h:outputLabel><br/>
-								<h:inputText id="lastName" value="#{user.lastName}" styleClass="input" /> <h:message for="lastName"/>				
+								<h:inputText id="lastName" required="true" value="#{user.lastName}" styleClass="input" /> <h:message styleClass="form__messages--error" for="lastName"/>				
 							</div>
 							<div style="display: block">	
 								<h:outputLabel><b>PASSWORD</b></h:outputLabel><br/>
-								<h:inputSecret id="password" value="#{user.password}" styleClass="input" /> <h:message for="password"/> <br/>
+								<h:inputSecret id="password" required="true" value="#{user.password}" styleClass="input" /> <h:message styleClass="form__messages--error" for="password"/> <br/>
 							</div>
 						</div>
 						
 						<div class="regBlock">
 							<div style="display: block">
 								<h:outputLabel><b>USERNAME</b></h:outputLabel><br/><br/>
-								<h:inputText id="userName" value="#{user.userName}" styleClass="input" style="text-align: left"/> <h:message for="userName"/>
+								<h:inputText id="userName" required="true" value="#{user.userName}" styleClass="input" style="text-align: left"/> <h:message styleClass="form__messages--error" for="userName"/>
 							</div>
 							<div style="display: block">
 								<br/>

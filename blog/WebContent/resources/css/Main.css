@@ -17,7 +17,7 @@ html {
 }
 
 #nav-pills input:hover {
-	background-color: #bdb6b5;
+	background-color: black;
 	-webkit-box-shadow: 9px 3px 16px -8px rgba(0,0,0,0.39);
 	-moz-box-shadow: 9px 3px 16px -8px rgba(0,0,0,0.39);
 	box-shadow: 9px 3px 16px -8px rgba(0,0,0,0.39);

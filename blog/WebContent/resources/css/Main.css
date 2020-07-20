@@ -5,6 +5,25 @@ html {
 	font-family: Arial, sans-serif;
 }
 
+#nav-pills {
+	width: 500px;
+	display: flex;
+}
+
+#nav-pills input {
+	border: 1px solid black;
+	padding: 1rem;
+	background-color: transparent;
+}
+
+#nav-pills input:hover {
+	background-color: #bdb6b5;
+	-webkit-box-shadow: 9px 3px 16px -8px rgba(0,0,0,0.39);
+	-moz-box-shadow: 9px 3px 16px -8px rgba(0,0,0,0.39);
+	box-shadow: 9px 3px 16px -8px rgba(0,0,0,0.39);
+	color: white;
+}
+
 /*Field styling*/
 .input {
 	

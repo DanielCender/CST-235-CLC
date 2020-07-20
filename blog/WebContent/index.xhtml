@@ -6,7 +6,13 @@
 
 	<ui:composition template="layouts/layout.xhtml">
 		<ui:define name="content">
-			This is the Index (Home) page.
+	<h3>
+		This is the Index (Home) page.
+	</h3>
+	<div id="nav-pills">
+		<h:button value="Login" outcome="login" />
+		<h:button value="Register" outcome="register" />
+	</div>
 		</ui:define>
 	</ui:composition>
 </html>

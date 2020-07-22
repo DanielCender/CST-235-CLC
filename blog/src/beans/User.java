@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @ManagedBean(name="user")
 @ViewScoped
 public class User implements Serializable{
@@ -14,8 +16,19 @@ public class User implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String firstName, lastName;
-	private String userName, password;
+	@NotBlank(message="First Name must not be empty!")
+	private String firstName;
+	
+	@NotBlank(message="Last Name must not be empty!")
+	private String lastName;
+	
+	@NotBlank(message="Username must not be empty!")
+	private String userName;
+	
+	@NotBlank(message="Password must not be empty!")
+	private String password;
+	
+	@NotBlank(message="Email must not be empty!")
 	private String email;
 	
 	public User() {

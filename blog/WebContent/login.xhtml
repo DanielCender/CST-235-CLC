@@ -4,11 +4,9 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
       
-<h:head>
-	<title>Login</title>
-</h:head>
-<h:body>
 	<ui:composition template="layouts/layout.xhtml">
+	
+		<ui:define name="title">Login</ui:define>
 	
 		<ui:define name="header">
 			<div class="header">
@@ -36,5 +34,5 @@
 			</h:form>
 		</ui:define>
 	</ui:composition>
-</h:body>
+
 </html>

@@ -3,16 +3,18 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
-
 	<ui:composition template="layouts/layout.xhtml">
-		<ui:define name="content">
-	<h3>
-		This is the Index (Home) page.
-	</h3>
-	<div id="nav-pills">
-		<h:button value="Login" outcome="login" />
-		<h:button value="Register" outcome="register" />
-	</div>
+		
+		<ui:define name="header">
+			<div class="header">
+				<h1>WELCOME HOME</h1>
+				<h3>JUST PICK SOMETHING, IT WILL BE OK</h3>
+			</div>
 		</ui:define>
+		
+		<ui:define name="content">
+
+		</ui:define>
+		
 	</ui:composition>
 </html>

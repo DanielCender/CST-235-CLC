@@ -52,7 +52,6 @@ background-color: #808080;
 
 /*Button styling*/
 .button {
-	
 	background-color: #000000; /* Black */
 	border: none;
 	color: white;
@@ -61,17 +60,15 @@ background-color: #808080;
 	padding: 10px 40px;
 	text-align: center;
 	transition-duration: 0.4s;
-	width: 290px
+	width: 290px;
 }
 
 .button:hover {
-	
 	background-color: #ffffff; /* White */
 	color: black;
 }
 
 .special {
-	
 	background-color: #000000; /* Black */
 	border: none;
 	color: white;
@@ -80,11 +77,10 @@ background-color: #808080;
 	padding: 10px 40px;
 	text-align: center;
 	transition-duration: 0.4s;
-	width: 400px
+	width: 400px;
 }
 
 .special:hover {
-	
 	background-color: #ffffff; /* White */
 	color: black;
 }

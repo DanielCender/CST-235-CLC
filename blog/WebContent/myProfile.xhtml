@@ -1,22 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+	  <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
-	<ui:composition template="layouts/layout.xhtml">
+<ui:composition template="layouts/layout.xhtml">
 
-	<ui:define name="title">Register</ui:define>
+		<ui:define name="title">My Profile</ui:define>
 	
 	<ui:define name="header">
 		<div class="header">
-			<h1>GO AHEAD, SIGN UP</h1>
-			<h3>THIS IS YOUR CHANCE TO GAIN DAILY INSIGHT</h3>
+			<h1>THIS IS YOU</h1>
+			<h3>IF YOU PUT YOUR MIND TO IT, YOU CAN ACCOMPLISH ANYTHING.  -GEORGE MCFLY</h3>
 		</div>
 	</ui:define>
 
 	<ui:define name="content">
 			<div class="formWrapper">
-				<h:form id="registrationForm">
+				<h:button value="WRITE/ EDIT POSTS" outcome="chooseEditCreatePosts.xhtml" styleClass="special"></h:button>
+				
+				<f:verbatim><hr style="height: 5px; border-width: 0; color: black; background-color: black; width: 600px;"/></f:verbatim>
+			
+				<h:form id="editProfileForm">
 				
 					<div class="regBlock">
 						<div style="display: block">
@@ -56,7 +60,7 @@
 						</div>
 					</div>
 					<div style="text-align: center">
-						<h:commandButton value="REGISTER" action="#{registrationFormController.onSubmit(user)}" styleClass="button" />
+						<h:commandButton value="SAVE CHANGES" action="#{registrationFormController.onSubmit(user)}" styleClass="button" />
 					</div>
 				</h:form>
 			</div>

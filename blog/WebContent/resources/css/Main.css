@@ -50,6 +50,7 @@ background-color: #808080;
   background-color: #2d2d2d;
 }
 
+/*Button styling*/
 .button {
 	
 	background-color: #000000; /* Black */
@@ -64,6 +65,25 @@ background-color: #808080;
 }
 
 .button:hover {
+	
+	background-color: #ffffff; /* White */
+	color: black;
+}
+
+.special {
+	
+	background-color: #000000; /* Black */
+	border: none;
+	color: white;
+	font-size: 24px;
+	margin: 8px 0;
+	padding: 10px 40px;
+	text-align: center;
+	transition-duration: 0.4s;
+	width: 400px
+}
+
+.special:hover {
 	
 	background-color: #ffffff; /* White */
 	color: black;
@@ -149,4 +169,6 @@ background-color: #808080;
 .navbar li input:hover{
 	background-color: #808080;
 }
+
+
 

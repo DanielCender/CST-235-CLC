@@ -9,9 +9,8 @@
 
 	<ui:define name="header">
 		<div class="header">
-			<!-- These need to be editable input form data that updates the header-->
-			<h1>TITLE OF POST</h1>
-			<h3>DATE  |  AUTHOR</h3>
+			<h1>CREATE POST</h1>
+			<h3>A GREAT PLACE TO WRITE WHAT YOU"RE THINKING ABOUT</h3>
 		</div>
 	</ui:define>
 
@@ -19,8 +18,41 @@
 	<ui:define name="content">
 		
 		<div class="formWrapper">
-			<h:graphicImage value="/images/default.jpg"/>
-		
+			<h:form id="newPostForm">
+				<h:graphicImage library="images" name="default.jpg" height="150px" width="600px"/><br/>	
+				<label for="img">UPLOAD IMAGE:</label>
+				<input type="file" id="img" name="img" accept="image/*" class="input"></input><br/><br/>
+				<h:inputTextarea value="Type some stuff in here." cols="72" rows="30" styleClass="textInput" /><br/>
+				
+				<div class="regBlock">
+					<div style="display: block">
+						<h:outputLabel for="authorFirstName"><b>AUTHOR FIRST NAME</b></h:outputLabel>
+						<h:inputText id="authorFirstName" value="#{user.firstName}" styleClass="input" /> 
+						<h:message styleClass="form__messages--error" for="firstName"/>
+					</div>
+
+					<div style="display: block">
+						<h:outputLabel for="authorLastName"><b>AUTHOR LAST NAME</b></h:outputLabel>
+						<h:inputText id="authorLastName" value="#{user.lastName}" styleClass="input" /> 
+						<h:message styleClass="form__messages--error" for="lastName"/>		
+					</div>	
+				</div>
+				
+				<!-- Need to update the value to update a post Title -->
+				<div class="regBlock">
+					<div style="display: block; text-align: left">
+						<h:outputLabel for="titleOfPost"><b>TITLE OF POST</b></h:outputLabel>
+						<h:inputText id="titleOfPost" value="#{user.lastName}" styleClass="input" /> 
+						<h:message styleClass="form__messages--error" for="lastName"/>			
+					</div>
+				</div>
+				
+				<!-- Command button needs to update some kind of list with posts -->
+				<div style="text-align: center">
+					<h:commandButton value="CREATE POST"  styleClass="special" />
+				</div>
+				
+			</h:form>
 		</div>
 		
 	</ui:define>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+      
+	<ui:composition template="layouts/layout.xhtml">
+	
+		<ui:define name="title">Login</ui:define>
+	
+		<ui:define name="header">
+			<div class="header">
+				<h1>WELCOME TO THE BLOG</h1>
+				<h3>DON'T MISS OUT ON WHAT WE HAVE TO SAY!</h3>
+			</div>
+		</ui:define>
+	
+	
+		<ui:define name="content">
+		
+			<h:form id="loginForm">
+			<div style="text-align: center">
+				<h:outputLabel><h2>EMAIL</h2></h:outputLabel>
+				<h:inputText type="text" value="#{user.email}" styleClass="input"></h:inputText>
+				<h:outputLabel><h2>PASSWORD</h2></h:outputLabel>
+				<h:inputSecret id="password" value="#{user.password}" styleClass="input"></h:inputSecret>
+				<h:message for="password" styleClass="form__messages--error" /> <br/>
+				<br/>
+				<br/>
+				<h:commandButton action="#{loginFormController.onSubmit(user)}" value="LOGIN" styleClass="button"></h:commandButton>
+				<p>Don't have an account?</p>
+				<h:button value="REGISTER" outcome="register.xhtml" styleClass="button"></h:button>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</html>

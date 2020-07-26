@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+	<ui:composition template="layouts/layout.xhtml">
+
+	<ui:define name="title">Register</ui:define>
+	
+	<ui:define name="header">
+		<div class="header">
+			<h1>GO AHEAD, SIGN UP</h1>
+			<h3>THIS IS YOUR CHANCE TO GAIN DAILY INSIGHT</h3>
+		</div>
+	</ui:define>
+
+	<ui:define name="content">
+			<div class="formWrapper">
+				<h:form id="registrationForm">
+				
+					<div class="regBlock">
+						<div style="display: block">
+							<h:outputLabel for="firstName"><b>FIRST NAME</b></h:outputLabel><br/>
+							<h:inputText id="firstName" value="#{user.firstName}" styleClass="input" /> 
+							<h:message styleClass="form__messages--error" for="firstName"/>
+						</div>
+						<div style="display: block">
+							<h:outputLabel for="email"><b>EMAIL</b></h:outputLabel><br/>
+							<h:inputText id="email" value="#{user.email}" styleClass="input" /> 
+							<h:message styleClass="form__messages--error" for="email"/> <br/>
+						</div>
+					</div>
+					
+					<div class="regBlock">
+						<div style="display: block">
+							<h:outputLabel><b>LAST NAME</b></h:outputLabel><br/>
+							<h:inputText id="lastName" value="#{user.lastName}" styleClass="input" /> 
+							<h:message styleClass="form__messages--error" for="lastName"/>				
+						</div>
+						<div style="display: block">	
+							<h:outputLabel><b>PASSWORD</b></h:outputLabel><br/>
+							<h:inputSecret id="password" value="#{user.password}" styleClass="input" /> 
+							<h:message styleClass="form__messages--error" for="password"/> <br/>
+						</div>
+					</div>
+					
+					<div class="regBlock">
+						<div style="display: block; text-align: left">
+							<h:outputLabel style="float: none"><b>USERNAME</b></h:outputLabel><br/><br/>
+							<h:inputText id="userName" value="#{user.userName}" styleClass="input"/> 
+							<h:message style="text-align: center" styleClass="form__messages--error" for="userName"/>
+						</div>
+						<div style="display: block">
+							<br/>
+							<h:inputHidden/>
+						</div>
+					</div>
+					<div style="text-align: center">
+						<h:commandButton value="REGISTER" action="#{registrationFormController.onSubmit(user)}" styleClass="button" />
+					</div>
+				</h:form>
+			</div>
+	</ui:define>
+		
+</ui:composition>
+</html>

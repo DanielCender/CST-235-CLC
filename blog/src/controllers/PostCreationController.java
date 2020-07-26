@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 
+import beans.Post;
 import beans.User;
 import beans.UserAuthentication;
 
@@ -19,12 +20,12 @@ public class PostCreationController implements Serializable{
 	
 	// temporary field to hold persistent list of posts. Probably will not hold new
 	// values between runs. Must have a setter to work properly.
-	@ManagedProperty(value = "#{Post}")
-	private Post posts;
+	@ManagedProperty(value = "#{post}")
+	private Post post;
 	
 	// Setter for injected bean
-	public void setPosts(Post posts) {
-		this.posts = posts;
+	public void setPosts(Post post) {
+		this.post = post;
 	}
 
 	/**
@@ -38,7 +39,8 @@ public class PostCreationController implements Serializable{
 		fc.getExternalContext().getRequestMap().put("post", newPost);		
 		
 		//add the post
-		posts.addPost(newPost);
+//		post.addPost(newPost);
+		// TODO: Use business interface
 		
 		// on success go immediately to login
 		return ("chooseEditCreatePosts.xhtml");

@@ -22,8 +22,6 @@
 				<h:graphicImage library="images" name="default.jpg" height="150px" width="600px"/><br/>	
 				<label for="img">UPLOAD IMAGE:</label>
 				<input type="file" id="img" name="img" accept="image/*" class="input"></input><br/><br/>
-				<h:inputTextarea value="Type some stuff in here." cols="72" rows="30" styleClass="textInput" /><br/>
-				
 				<div class="regBlock">
 					<div style="display: block">
 						<h:outputLabel for="authorFirstName"><b>AUTHOR FIRST NAME</b></h:outputLabel>
@@ -44,6 +42,13 @@
 						<h:outputLabel for="titleOfPost"><b>TITLE OF POST</b></h:outputLabel>
 						<h:inputText id="titleOfPost" value="#{user.lastName}" styleClass="input" /> 
 						<h:message styleClass="form__messages--error" for="lastName"/>			
+					</div>
+				</div>
+				<div class="regBlock">
+					<div style="display: block; text-align: left">
+						<h:outputLabel for="textOfPost"><b>POST CONTENT</b></h:outputLabel>
+						<h:inputTextarea  cols="72" rows="20" id="textOfPost" value="#{post.text}" styleClass="input"  /> 
+						<h:message styleClass="form__messages--error" for="text"/>
 					</div>
 				</div>
 				

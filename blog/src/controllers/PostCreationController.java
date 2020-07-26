@@ -7,16 +7,25 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 
 import beans.Post;
 import beans.User;
 import beans.UserAuthentication;
+import business.OrdersBusinessInterface;
+import business.PostBusinessService;
 
 @ManagedBean(name="PostCreationController")
 @ViewScoped
 public class PostCreationController implements Serializable{
-	
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
+	private PostBusinessService postService;
+	
+	public PostBusinessService getPostService() {
+		return postService;
+	}
 	
 	// temporary field to hold persistent list of posts. Probably will not hold new
 	// values between runs. Must have a setter to work properly.
@@ -38,9 +47,8 @@ public class PostCreationController implements Serializable{
 		
 		fc.getExternalContext().getRequestMap().put("post", newPost);		
 		
-		//add the post
-//		post.addPost(newPost);
-		// TODO: Use business interface
+		// add the post using business interface
+		postService.createPost(newPost);
 		
 		// on success go immediately to login
 		return ("chooseEditCreatePosts.xhtml");

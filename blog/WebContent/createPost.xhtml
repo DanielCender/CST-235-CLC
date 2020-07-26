@@ -23,16 +23,11 @@
 				<label for="img">UPLOAD IMAGE:</label>
 				<input type="file" id="img" name="img" accept="image/*" class="input"></input><br/><br/>
 				<div class="regBlock">
-					<div style="display: block">
-						<h:outputLabel for="authorFirstName"><b>AUTHOR FIRST NAME</b></h:outputLabel>
-						<h:inputText id="authorFirstName" value="#{user.firstName}" styleClass="input" /> 
-						<h:message styleClass="form__messages--error" for="firstName"/>
-					</div>
-
-					<div style="display: block">
-						<h:outputLabel for="authorLastName"><b>AUTHOR LAST NAME</b></h:outputLabel>
-						<h:inputText id="authorLastName" value="#{user.lastName}" styleClass="input" /> 
-						<h:message styleClass="form__messages--error" for="lastName"/>		
+				
+						<div style="display: block">
+						<h:outputLabel for="authorEmail"><b>AUTHOR EMAIL</b></h:outputLabel>
+						<h:inputText id="authorEmail" value="#{post.authorId}" styleClass="input" /> 
+						<h:message styleClass="form__messages--error" for="authorId"/>		
 					</div>	
 				</div>
 				
@@ -54,7 +49,7 @@
 				
 				<!-- Command button needs to update some kind of list with posts -->
 				<div style="text-align: center">
-					<h:commandButton value="CREATE POST"  styleClass="special" />
+					<h:commandButton value="CREATE POST" action="#{postCreationController.onSubmit(post)}" styleClass="special" />
 				</div>
 				
 			</h:form>

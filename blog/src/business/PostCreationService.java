@@ -7,15 +7,16 @@ import java.util.List;
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.enterprise.inject.Alternative;
+import javax.inject.Named;
+
 
 /**
  * Session Bean implementation class PostCreationService
  */
+@Named
 @Stateless
 @Local(PostCreationInterface.class)
 @LocalBean
-@Alternative
 public class PostCreationService implements PostCreationInterface {
 	
 	private List<Post> posts = new ArrayList<>();

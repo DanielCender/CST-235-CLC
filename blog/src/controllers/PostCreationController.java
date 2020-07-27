@@ -3,21 +3,24 @@ package controllers;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 import beans.Post;
 import business.PostCreationInterface;
 
-@ManagedBean(name="PostCreationController")
+@ManagedBean
 @ViewScoped
 public class PostCreationController implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	PostCreationInterface posts;
+	private PostCreationInterface posts;
+	
+	public PostCreationInterface getPosts() {
+		return posts;
+	}
 
 	/**
 	 * Creates a new post
@@ -25,12 +28,9 @@ public class PostCreationController implements Serializable{
 	 * @return A String to either the chooseEditCreatePost.xhtml page for success or to the feed when we have that made
 	 */
 	public String onSubmit(Post newPost) {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		
-		fc.getExternalContext().getRequestMap().put("post", newPost);		
-		
 		//add the post
 		posts.addPost(newPost);
+		System.out.println("Just added " + newPost.toString() + " to posts");
 		
 		// on success go immediately to login
 		return ("chooseEditCreatePosts.xhtml");

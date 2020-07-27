@@ -68,6 +68,24 @@ background-color: #808080;
   color: white;
 }
 
+.textAreaInput {
+	background-color: #efefef;
+	border: 5px;
+  	color: black;
+  	margin: 8px 8px;
+	padding: 15px 20px;
+	width: 600px;
+}
+
+.textAreaInput:hover {
+background-color: #808080;
+}
+
+.textAreaInput:focus {
+  background-color: #2d2d2d;
+  color: white;
+}
+
 /*Button styling*/
 .button {
 	background-color: #000000; /* Black */
@@ -185,4 +203,8 @@ background-color: #808080;
 }
 
 
+.postList {
+	list-style-type: none;
+	padding: 0;
+}
 

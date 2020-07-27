@@ -13,7 +13,8 @@ import beans.User;
 @ViewScoped
 public class LoginFormController {
     @Inject
-    UserAuthenticationInterface auth;
+    private UserAuthenticationInterface auth;
+   
 	
 	public String onSubmit(User user) {
 		FacesContext fc = FacesContext.getCurrentInstance();
@@ -23,7 +24,7 @@ public class LoginFormController {
 		} else {
 			fc.addMessage("loginForm:password", new FacesMessage("That email and password combination is invalid."));
 		}
-//		return "login.xhtml";
-		return "";
+		// Go back to login if unsuccessful
+		return "login.xhtml";
 	}
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.enterprise.inject.Alternative;
+//import javax.enterprise.inject.Alternative;
 
 /**
  * Session Bean implementation class UserAuthenticationService
@@ -15,7 +15,6 @@ import javax.enterprise.inject.Alternative;
 @Stateless
 @Local(UserAuthenticationInterface.class)
 @LocalBean
-@Alternative
 public class UserAuthenticationService implements UserAuthenticationInterface {
 	
 	private List<User> userList = new ArrayList<>();

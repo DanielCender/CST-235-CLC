@@ -21,7 +21,6 @@ public class RegistrationFormController implements Serializable{
 	@Inject
 	UserAuthenticationInterface users;
 	
-	
 
 	/**
 	 * Takes in submit request from registration form

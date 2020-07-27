@@ -6,14 +6,15 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-import beans.UserAuthentication;
+import business.UserAuthenticationInterface;
 import beans.User;
 
 @ManagedBean
 @ViewScoped
 public class LoginFormController {
     @Inject
-    public UserAuthentication auth;
+    private UserAuthenticationInterface auth;
+   
 	
 	public String onSubmit(User user) {
 		FacesContext fc = FacesContext.getCurrentInstance();
@@ -23,7 +24,7 @@ public class LoginFormController {
 		} else {
 			fc.addMessage("loginForm:password", new FacesMessage("That email and password combination is invalid."));
 		}
-//		return "login.xhtml";
-		return "";
+		// Go back to login if unsuccessful
+		return "login.xhtml";
 	}
 }

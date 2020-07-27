@@ -30,11 +30,14 @@
 			</div>
 			
 			<div style="text-align: center">
-				<!--Use for loop to insert new button from the list that holds all posts-->
-				<h:button value="POST TITLE" outcome="createPost.xhtml" styleClass="special"></h:button><br/>
-				<h:button value="POST TITLE" outcome="createPost.xhtml" styleClass="special"></h:button><br/>
-				<h:button value="POST TITLE" outcome="createPost.xhtml" styleClass="special"></h:button><br/>
-				<h:button value="POST TITLE" outcome="createPost.xhtml" styleClass="special"></h:button><br/>
+			<!--Use ui for loop to insert new button from the list that holds all posts-->
+			<ul class="postList">
+    			<ui:repeat value="#{postsController.posts.posts}" var="post">
+        			<li>
+            			<h:button value="#{post.postTitle}" outcome="createPost.xhtml" styleClass="special"></h:button>
+        			</li>
+   				</ui:repeat>
+			</ul>
 			</div>
 			
 		</div>

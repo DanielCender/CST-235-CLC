@@ -7,9 +7,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 
 import beans.User;
-import beans.UserAuthentication;
+import business.UserAuthenticationInterface;
 
 @ManagedBean(name="registrationFormController")
 @ViewScoped
@@ -17,15 +18,9 @@ public class RegistrationFormController implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	// temporary field to hold persistent list of users. Probably will not hold new
-	// values between runs. Must have a setter to work properly.
-	@ManagedProperty(value = "#{userAuthentication}")
-	private UserAuthentication users;
+	@Inject
+	UserAuthenticationInterface users;
 	
-	// Setter for injected bean
-	public void setUsers(UserAuthentication users) {
-		this.users = users;
-	}
 
 	/**
 	 * Takes in submit request from registration form

@@ -12,8 +12,8 @@ public interface DataAccessInterface<T> {
 	
 	//TODO: these need to be changed based on individual connection username and password
 	public static final String dbURL = "jdbc:postgresql://localhost:5432/postgres"; //this is the string for postgres
-	public static final String username = ""; //admin username when setting up postgres
-	public static final String password = ""; //password for postgres connection
+	public static final String username = "postgres"; //admin username when setting up postgres
+	public static final String password = "Idunno11!@#"; //password for postgres connection
 			
 	/**
 	 * retrieves a connection to the current database
@@ -33,9 +33,9 @@ public interface DataAccessInterface<T> {
 	}
 	
 	// CRUD pattern methods
-	public T get(String email);
+	public T get(String id);
 	List<T> getAll();
 	void save(T t);
-	void update(T t, String[] params);
+	void update(String id, T t);
 	void delete(T t);
 }

@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -29,16 +28,13 @@ public class RegistrationFormController implements Serializable{
 	 */
 	public String onSubmit(User newUser) {
 		FacesContext fc = FacesContext.getCurrentInstance();
-		
-		// simulate database check for duplicate user. Some of the logic here will be
-		// moved into the DAO classes later
-		for (User user : users.getUserList()) {
-			if(checkDuplicateUser(fc, user, newUser)) {
-				// add the user back to the request before we return to the registration page
-				fc.getExternalContext().getRequestMap().put("user", newUser);
-				//failed, return to registration page
-				return ("register.xhtml");
-			}
+
+		//check for duplicate user name and email before entering into database
+		if(checkDuplicateUser(fc, newUser)) {
+			// add the user back to the request before we return to the registration page
+			fc.getExternalContext().getRequestMap().put("user", newUser);
+			//failed, return to registration page
+			return ("register.xhtml");
 		}
 		
 		//add the user
@@ -57,11 +53,11 @@ public class RegistrationFormController implements Serializable{
 	 * @param newUser The new user that is attempting to be added
 	 * @return true for a duplicate match
 	 */
-	private boolean checkDuplicateUser(FacesContext fc, User user, User newUser) {
+	private boolean checkDuplicateUser(FacesContext fc, User newUser) {
 		boolean result = false;
 		
 		//check for duplicate userName
-		if (user.getUserName().equals(newUser.getUserName())) {
+		if (users.checkDuplicateUsername(newUser.getUserName())) {
 			// add the error message to the page "registrationForm:userName" needs to be the
 			// id of the form and the id of the userName field
 			fc.addMessage("registrationForm:userName", new FacesMessage("That Username has already been taken!"));
@@ -70,7 +66,7 @@ public class RegistrationFormController implements Serializable{
 		}
 		
 		// check for duplicate email
-		if (user.getEmail().equals(newUser.getEmail())) {
+		if (users.checkDuplicateEmail(newUser.getEmail())) {
 			// add the error message to the page "registrationForm:email" needs to be the id
 			// of the form and the id of the email field
 			fc.addMessage("registrationForm:email", new FacesMessage("That Email is being used by another person!"));

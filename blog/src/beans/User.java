@@ -39,13 +39,12 @@ public class User implements Serializable{
 		this.email = "";
 	}
 	
-	public User(String firstName, String lastName, String userName, 
-			String password, String email) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.userName = userName;
-		this.password = password;
-		this.email = email;
+	public User(User user) {
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.userName = user.getUserName();
+		this.password = user.getPassword();
+		this.email = user.getEmail();
 	}
 
 	public String getFirstName() {

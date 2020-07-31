@@ -18,10 +18,10 @@ public class UserAuthentication {
 		userList = new ArrayList<>();
 		
 		// TODO: For now, just populating a static list of users on instantiation
-		userList.add(new User("daniel", "cender", "danc", "danc", "dan@gmail.com"));
+		/*userList.add(new User("daniel", "cender", "danc", "danc", "dan@gmail.com"));
 		userList.add(new User("marc", "teixeira", "marct", "marct", "marc@gmail.com"));
 		userList.add(new User("tim", "james", "timj", "timj", "tim@gmail.com"));
-		userList.add(new User("chance", "anderson", "chancea", "chancea", "chance@gmail.com"));
+		userList.add(new User("chance", "anderson", "chancea", "chancea", "chance@gmail.com"));*/
 	}
 	
 	public void addUser(User user) {

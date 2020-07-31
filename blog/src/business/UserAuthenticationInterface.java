@@ -11,9 +11,11 @@ public interface UserAuthenticationInterface {
 	
 	public List<User> getUserList();
 	
-	public void setUserList(List<User> userList);
-	
 	public void addUser(User newUser);
+	
+	public boolean checkDuplicateUsername(String username);
+	
+	public boolean checkDuplicateEmail(String email);
 	
 	public boolean validateLogin(String email, String password);
 

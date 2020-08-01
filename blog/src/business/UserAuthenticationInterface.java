@@ -11,6 +11,8 @@ public interface UserAuthenticationInterface {
 	
 	public List<User> getUserList();
 	
+	public User getUser(String email);
+	
 	public void addUser(User newUser);
 	
 	public boolean checkDuplicateUsername(String username);

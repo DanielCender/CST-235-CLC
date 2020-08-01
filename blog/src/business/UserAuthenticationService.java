@@ -38,6 +38,11 @@ public class UserAuthenticationService implements UserAuthenticationInterface {
     }
     
     @Override
+    public User getUser(String email) {
+    	return dao.get(email);
+    }
+    
+    @Override
     public boolean checkDuplicateUsername(String username) {
     	for(User u : this.getUserList()) {
     		if(u.getUserName().equals(username)) {

@@ -24,8 +24,14 @@
 					<h2>LATEST</h2>
 				</div>
 			</div>
-			<h:button value="WRITE NEW POST" outcome="createPost.xhtml" styleClass="special"></h:button>
-					
+			<ul class="postList">
+    			<ui:repeat value="#{postsController.posts.posts}" var="post" size="1">
+        			<li>
+            			<h:button value="#{post.postTitle}" outcome="createPost.xhtml" styleClass="special"></h:button>
+        			</li>
+   				</ui:repeat>
+			</ul>
+				
 			<f:verbatim><hr style="height: 5px; border-width: 0; color: black; background-color: black; width: 600px;"/></f:verbatim>
 			
 			<div class="regBlock">

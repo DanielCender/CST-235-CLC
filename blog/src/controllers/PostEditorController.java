@@ -30,6 +30,7 @@ public class PostEditorController  implements Serializable {
 	}
 	
 	private User author;
+	
 	public User getAuthor() {
 		return author;
 	}
@@ -55,8 +56,12 @@ public class PostEditorController  implements Serializable {
 	 */
 	public String onEdit(Post updatedPost) {
 		System.out.println("Updated post item: " + updatedPost);
+		try {
 		postService.update(String.valueOf(toEdit.getId()), updatedPost);
 		
-		return ("chooseEditCreatePosts.xhtml");
+		} catch(Exception e) {
+			System.out.println("Err: " + e.getMessage());
+		}
+		return ("chooseEditCreatePosts.xhtml?faces-redirect=true");
 	}
 }

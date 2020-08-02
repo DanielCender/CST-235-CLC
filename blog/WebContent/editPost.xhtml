@@ -28,7 +28,7 @@
               <h:outputLabel for="authorId"><b>AUTHOR EMAIL</b></h:outputLabel>
               <h:inputText
                 id="authorId"
-                value="#{postEditorController.author.email}"
+                value="#{postEditorController.toEdit.authorId}"
                 styleClass="input"
               />
               <h:message styleClass="form__messages--error" for="authorId" />
@@ -62,6 +62,7 @@
               value="SAVE CHANGES"
               action="#{postEditorController.onEdit(toEdit)}"
               styleClass="special"
+              ajax="false"
             />
           </div>
         </h:form>

@@ -46,6 +46,10 @@ public class PostEditorController  implements Serializable {
 	        System.out.println("To Edit: " + toEdit.toString());
 	        author = userService.getUser(toEdit.getAuthorId());
 	        System.out.println("To Edit - Author: " + author.toString());
+	    } else {
+	    	// Initialize to avoid "null" EL value errors
+		    toEdit = new Post();
+		    author = new User();
 	    }
 	}
 	
@@ -55,9 +59,9 @@ public class PostEditorController  implements Serializable {
 	 * @return A string designating a return xhtml page
 	 */
 	public String onEdit(Post updatedPost) {
-		System.out.println("Updated post item: " + updatedPost);
+		System.out.println("Updated post item: " + updatedPost.toString());
 		try {
-		postService.update(String.valueOf(toEdit.getId()), updatedPost);
+		postService.update(String.valueOf(updatedPost.getId()), updatedPost);
 		
 		} catch(Exception e) {
 			System.out.println("Err: " + e.getMessage());

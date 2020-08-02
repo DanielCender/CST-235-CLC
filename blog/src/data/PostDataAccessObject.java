@@ -64,7 +64,7 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 			}
 		}
 		
-		return new Post(post);
+		return post;
 	}
 
 	@Override
@@ -78,12 +78,6 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 			ResultSet rs = statement.executeQuery(query);
 			
 			while(rs.next()) {
-//				ResultSetMetaData rsmd = rs.getMetaData();
-//				int numberOfColumns = rsmd.getColumnCount();
-//				System.out.println("Num of columns: " + numberOfColumns);
-//				for(int i = 0; i < numberOfColumns; i++) {
-//					System.out.println(rsmd.getColumnLabel(i + 1));
-//				}
 				post.setId(rs.getInt("id"));
 				post.setPostTitle(rs.getString("title"));
 				post.setPostContent(rs.getString("content"));
@@ -155,13 +149,14 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 	//updates a posts with the given ID to the new information in t
 	@Override
 	public void update(String id, Post t) {
+		System.out.println("id: " + id);
 		Connection conn = DataAccessInterface.getConnection();
 		try {
-			String query = "UPDATE \"GCU\".Posts SET title=?, content=?, authorid=? WHERE ID=?";
+			String query = "UPDATE \"GCU\".Posts SET title=?, content=?, authorid=? WHERE id=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, t.getPostTitle());
 			ps.setString(2, t.getPostContent());
-			ps.setString(3, t.getPostContent());
+			ps.setString(3, t.getAuthorId());
 			ps.setInt(4, Integer.valueOf(id));
 			
 			int rows = ps.executeUpdate();

@@ -22,7 +22,7 @@
           <h:graphicImage library="images" name="default.jpg" height="150px" width="600px" /><br />
           <!-- 	<label for="img">UPLOAD IMAGE:</label>
 				<input type="file" id="img" name="img" accept="image/*" class="input"></input><br/><br/> -->
-
+			<h:inputHidden value = "#{postEditorController.toEdit.id}" id = "hiddenPostId" /> 
           <div class="regBlock">
             <div style="display: block;">
               <h:outputLabel for="authorId"><b>AUTHOR EMAIL</b></h:outputLabel>
@@ -60,7 +60,7 @@
           <div style="text-align: center;">
             <h:commandButton
               value="SAVE CHANGES"
-              action="#{postEditorController.onEdit(toEdit)}"
+              action="#{postEditorController.onEdit(postEditorController.toEdit)}"
               styleClass="special"
               ajax="false"
             />

@@ -1,7 +1,7 @@
 package business;
 
 import beans.User;
-import data.UserDataAccessObject;
+import data.UserDataAccessInterface;
 
 import java.util.List;
 import javax.ejb.Local;
@@ -19,7 +19,7 @@ import javax.inject.Inject;
 public class UserAuthenticationService implements UserAuthenticationInterface {
 
 	@Inject
-	private UserDataAccessObject dao;
+	private UserDataAccessInterface<User> dao;
 	
     /**
      * Default constructor. 

@@ -25,11 +25,11 @@
 				<input type="file" id="img" name="img" accept="image/*" class="input"></input><br/><br/> -->
 				
 				<!--  Hidden input to set the post ID for save operation -->
-				<h:inputHidden id="postId" value="#{post.id}" />
+				<h:inputHidden id="postId" value="#{param['id']}" />
 				
 				<div class="regBlock">
 					<div style="display: block">
-						<h:outputLabel for="firstName"><b>AUTHOR EMAIL</b></h:outputLabel>
+						<h:outputLabel for="authorId"><b>AUTHOR EMAIL</b></h:outputLabel>
 						<h:inputText id="authorId" value="#{post.authorId}"  styleClass="input" /> 
 						<p:watermark for="authorId" value="#{sessionUser.email}"/>
 						<h:message styleClass="form__messages--error" for="authorId"/>

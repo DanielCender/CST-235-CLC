@@ -3,6 +3,7 @@ package data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import javax.inject.Inject;
 import beans.Post;
 
 @Stateless
-@Local(DataAccessInterface.class)
+@Local(PostDataAccessInterface.class)
 @LocalBean
 public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 
@@ -40,7 +41,6 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 				post.setPostTitle(rs.getString("title"));
 				post.setPostContent(rs.getString("content"));
 				post.setAuthorId("authorid");
-				
 				System.out.println("Post: " + post.toString());
 			}
 			
@@ -73,15 +73,26 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 		List<Post> postList = new ArrayList<Post>();
 		
 		try {
-			String query = "SELECT * FROM GCU.Posts";
+			String query = "SELECT * FROM \"GCU\".Posts";
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(query);
 			
 			while(rs.next()) {
+				ResultSetMetaData rsmd = rs.getMetaData();
+				int numberOfColumns = rsmd.getColumnCount();
+				System.out.println("Num of columns: " + numberOfColumns);
+				for(int i = 0; i < numberOfColumns; i++) {
+					System.out.println(rsmd.getColumnLabel(i + 1));
+				}
+				System.out.println(rs.getString("title"));
+				System.out.println(rs.getString("content"));
+				System.out.println(rs.getString("authorid"));
+				post.setId(rs.getInt("id"));
 				post.setPostTitle(rs.getString("title"));
 				post.setPostContent(rs.getString("content"));
-				post.setAuthorId("authorid");
-				postList.add(new Post(post));
+				post.setAuthorId(rs.getString("authorid"));
+				postList.add(post);
+				post = new Post(); // refresh obj
 			}
 			
 			rs.close();
@@ -112,7 +123,7 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 	public void save(Post t) {
 		Connection conn = DataAccessInterface.getConnection();
 		try {
-			String query = "INSERT INTO GCU.Posts (title, content, authorId) VALUES (?, ?, ?)";
+			String query = "INSERT INTO \"GCU\".Posts (title, content, authorId) VALUES (?, ?, ?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, t.getPostTitle());
 			ps.setString(2, t.getPostContent());
@@ -149,7 +160,7 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 	public void update(String id, Post t) {
 		Connection conn = DataAccessInterface.getConnection();
 		try {
-			String query = "UPDATE GCU.Posts SET title=?, content=?, authorid=? WHERE ID=?";
+			String query = "UPDATE \"GCU\".\"Posts\" SET title=?, content=?, authorid=? WHERE ID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, t.getPostTitle());
 			ps.setString(2, t.getPostContent());
@@ -187,9 +198,9 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 	public void delete(Post t) {
 		Connection conn = DataAccessInterface.getConnection();
 		try {
-			String query = "DELETE FROM GCU.Posts WHERE ID=?";
+			String query = "DELETE FROM \"GCU\".\"Posts\" WHERE ID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, t.getId());
+			ps.setInt(1, t.getId());
 			
 			int rows = ps.executeUpdate();
 			if(rows < 1) {

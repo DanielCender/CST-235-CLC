@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import beans.User;
 
 @Stateless
-@Local(DataAccessInterface.class)
+@Local(UserDataAccessInterface.class)
 @LocalBean
 public class UserDataAccessObject implements UserDataAccessInterface<User> {
 
@@ -30,7 +30,7 @@ public class UserDataAccessObject implements UserDataAccessInterface<User> {
 		user = new User();
 		
 		try {
-			String query = "SELECT * FROM GCU.Users WHERE Email = ?";
+			String query = "SELECT * FROM \"GCU\".Users WHERE Email = ?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, email);
 			
@@ -73,7 +73,7 @@ public class UserDataAccessObject implements UserDataAccessInterface<User> {
 		List<User> userList = new ArrayList<User>();
 		
 		try {
-			String query = "SELECT * FROM GCU.Users";
+			String query = "SELECT * FROM \"GCU\".Users";
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(query);
 			

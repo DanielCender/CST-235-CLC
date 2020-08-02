@@ -1,7 +1,9 @@
 package controllers;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.view.ViewScoped;
@@ -13,16 +15,36 @@ import business.PostBusinessInterface;
 @ManagedBean
 @ViewScoped
 public class PostCreationController implements Serializable {
-	@ManagedProperty("#{param.id}") private String postId;
+//	@ManagedProperty("#{param.id}") private String postId;
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private PostBusinessInterface posts;
+	private PostBusinessInterface postService;
 	
-	public PostBusinessInterface getPosts() {
-		return posts;
-	}
+
+	private List<Post> posts;
+
+	
+	@PostConstruct
+    public void init() {
+		System.out.println("**** Ran init ***");
+       posts = postService.getPosts();
+    }
+
+    public List<Post> getPosts() {
+    	System.out.println("**** Ran getPosts now ***");
+    	System.out.println("Posts Content Length: " + posts.size());
+    	for(Post p : posts) {
+    		System.out.println(p.toString());
+    	}
+        return posts;
+    }
+	
+	
+//	public PostBusinessInterface getPosts() {
+//		return posts;
+//	}
 
 	/**
 	 * Creates a new post
@@ -31,7 +53,7 @@ public class PostCreationController implements Serializable {
 	 */
 	public String onSubmit(Post newPost) {
 		//add the post
-		posts.addPost(newPost);
+		postService.addPost(newPost);
 		System.out.println("Just added " + newPost.toString() + " to posts");
 		
 		// on success go immediately to login

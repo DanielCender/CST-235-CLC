@@ -32,9 +32,14 @@
 			<div style="text-align: center">
 			<!--Use ui for loop to insert new button from the list that holds all posts-->
 			<ul class="postList">
-    			<ui:repeat value="#{postsController.posts.posts}" var="post">
+    			<ui:repeat value="#{postCreationController.posts}" var="post">
         			<li>
-            			<h:button value="#{post.postTitle}" outcome="editPost.xhtml" styleClass="special"></h:button>
+            			<h:button value="#{post.postTitle}" outcome="editPost.xhtml?id=#{post.id}" styleClass="special">
+            			</h:button>
+            		<!-- 	<h:link value="#{book.bookTitle}" outcome="editPost.xhtml" styleClass="special">
+            				
+       					 <f:param name="postId" value="#{post.id}"/>
+   						 </h:link> -->
         			</li>
    				</ui:repeat>
 			</ul>

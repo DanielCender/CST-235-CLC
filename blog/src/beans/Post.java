@@ -12,7 +12,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	String id;
+	int id;
 	
 	@NotBlank(message="Post title cannot be empty!")
 	String postTitle;
@@ -25,7 +25,6 @@ public class Post implements Serializable {
 	
 	
 	public Post() {
-		this.id = "";
 		this.authorId = "";
 		this.postTitle = "";
 		this.postContent = "";
@@ -40,17 +39,16 @@ public class Post implements Serializable {
 	}
 
 	public Post(String authorId, String postTitle, String postContent) {
-		this.id = "";
 		this.authorId = authorId;
 		this.postTitle = postTitle;
 		this.postContent = postContent;
 	}
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
@@ -76,5 +74,10 @@ public class Post implements Serializable {
 
 	public void setPostTitle(String postTitle) {
 		this.postTitle = postTitle;
+	}
+	
+	@Override
+	public String toString() {
+		return ("Post: " + this.id + " - " + this.postTitle + " - " + this.postContent + " - " + this.authorId);
 	}
 }

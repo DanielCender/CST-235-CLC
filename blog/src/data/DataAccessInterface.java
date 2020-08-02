@@ -13,7 +13,7 @@ public interface DataAccessInterface<T> {
 	//TODO: these need to be changed based on individual connection username and password
 	public static final String dbURL = "jdbc:postgresql://localhost:5432/postgres"; //this is the string for postgres
 	public static final String username = "postgres"; //admin username when setting up postgres
-	public static final String password = "Idunno11!@#"; //password for postgres connection
+	public static final String password = "root"; //password for postgres connection
 			
 	/**
 	 * retrieves a connection to the current database

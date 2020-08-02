@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
-import business.PostCreationInterface;
+import business.PostBusinessInterface;
 
 /**
  * 
@@ -24,7 +24,7 @@ public class PostsController implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private PostCreationInterface posts;
+	private PostBusinessInterface posts;
 	
 	// Unneeded for the moment
 //	public void setPosts() {
@@ -35,7 +35,7 @@ public class PostsController implements Serializable  {
 //		this.posts.addPost(new Post("Tim", "James", "Some Title", "Some Content"));
 //	}
 	
-	public PostCreationInterface getPosts() throws FacesException {
+	public PostBusinessInterface getPosts() throws FacesException {
 		return posts;
 	}
 }

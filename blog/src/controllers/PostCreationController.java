@@ -3,22 +3,24 @@ package controllers;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 import beans.Post;
-import business.PostCreationInterface;
+import business.PostBusinessInterface;
 
 @ManagedBean
 @ViewScoped
-public class PostCreationController implements Serializable{
+public class PostCreationController implements Serializable {
+	@ManagedProperty("#{param.id}") private String postId;
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private PostCreationInterface posts;
+	private PostBusinessInterface posts;
 	
-	public PostCreationInterface getPosts() {
+	public PostBusinessInterface getPosts() {
 		return posts;
 	}
 
@@ -36,4 +38,14 @@ public class PostCreationController implements Serializable{
 		return ("chooseEditCreatePosts.xhtml");
 	}
 	
+	/**
+	 * Updates an existing post
+	 * @param updatedPost
+	 * @return A string designating a return xhtml page
+	 */
+	public String onEdit(Post updatedPost) {
+		System.out.println("Updated post item: " + updatedPost);
+		// Make call to business interface that connects to dao
+		return ("chooseEditCreatePosts.xhtml");
+	}
 }

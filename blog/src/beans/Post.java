@@ -1,13 +1,9 @@
 package beans;
 
-//import java.awt.image.BufferedImage;
-//import java.io.File;
-//import java.io.IOException;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
-//import javax.imageio.ImageIO;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -15,12 +11,8 @@ import org.hibernate.validator.constraints.NotBlank;
 @ViewScoped
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@NotBlank(message="Author's first name cannot be empty!")
-	String authorFirstName;
 	
-	@NotBlank(message="Author's last name cannot be empty!")
-	String authorLastName;
+	String id;
 	
 	@NotBlank(message="Post title cannot be empty!")
 	String postTitle;
@@ -28,50 +20,47 @@ public class Post implements Serializable {
 	@NotBlank(message="Post content cannot be empty!")
 	String postContent;
 	
-//	String imagePath;
+	@NotBlank(message="Author's ID cannot be empty!")
+	String authorId;
 	
-//	BufferedImage postImage;
 	
 	public Post() {
-		this.authorFirstName = "";
-		this.authorLastName = "";
+		this.id = "";
+		this.authorId = "";
 		this.postTitle = "";
 		this.postContent = "";
-//		this.imagePath = "";
-//		applyImagePath();
 		
+	}
+	
+	public Post(Post p) {
+		this.id = p.id;
+		this.authorId = p.authorId;
+		this.postTitle = p.postTitle;
+		this.postContent = p.postContent;
 	}
 
-	public Post(String authorFirstName, String authorLastName, String postTitle, String postContent) {
-		
-		this.authorFirstName = authorFirstName;
-		this.authorLastName = authorLastName;
+	public Post(String authorId, String postTitle, String postContent) {
+		this.id = "";
+		this.authorId = authorId;
 		this.postTitle = postTitle;
 		this.postContent = postContent;
-//		this.imagePath = imagePath;
-//		applyImagePath();
-		
 	}
 	
-//	private void applyImagePath() {
-//		if (!this.imagePath.isEmpty()) {
-//			try {
-//				postImage = ImageIO.read(new File(this.imagePath));
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//				System.out.println("Unable to process selected image");
-//			}
-//		} else {
-//			try {
-//				postImage = ImageIO.read(new File("/blog/WebContent/resources/images/default.jpg"));
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//				System.out.println("Default Image Failure");
-//			}
-//		}
-//	}
+	public String getId() {
+		return id;
+	}
 	
+	public void setId(String id) {
+		this.id = id;
+	}
 	
+	public String getAuthorId() {
+		return authorId;
+	}
+	
+	public void setAuthorId(String authorId) {
+		this.authorId = authorId;
+	}
 
 	public String getPostContent() {
 		return postContent;
@@ -81,22 +70,6 @@ public class Post implements Serializable {
 		this.postContent = postContent;
 	}
 
-	public String getAuthorFirstName() {
-		return authorFirstName;
-	}
-
-	public void setAuthorFirstName(String authorFirstName) {
-		this.authorFirstName = authorFirstName;
-	}
-
-	public String getAuthorLastName() {
-		return authorLastName;
-	}
-
-	public void setAuthorLastName(String authorLastName) {
-		this.authorLastName = authorLastName;
-	}
-
 	public String getPostTitle() {
 		return postTitle;
 	}
@@ -104,25 +77,4 @@ public class Post implements Serializable {
 	public void setPostTitle(String postTitle) {
 		this.postTitle = postTitle;
 	}
-//
-//	public String getImagePath() {
-//		return imagePath;
-//	}
-//
-//	public void setImagePath(String imagePath) {
-//		this.imagePath = imagePath;
-//	}
-//
-//	public BufferedImage getPostImage() {
-//		return postImage;
-//	}
-//
-//	public void setPostImage(BufferedImage postImage) {
-//		this.postImage = postImage;
-//	}
-
-	
-	
-	
-
 }

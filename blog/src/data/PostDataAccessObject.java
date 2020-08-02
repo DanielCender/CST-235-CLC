@@ -13,44 +13,44 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import beans.User;
+import beans.Post;
 
 @Stateless
 @Local(DataAccessInterface.class)
 @LocalBean
-public class UserDataAccessObject implements UserDataAccessInterface<User> {
+public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 
 	@Inject 
-	private User user;
+	private Post post;
 	
-	//Gets a single user by their email
+	//Gets a single article by its ID
 	@Override
-	public User get(String email) {
+	public Post get(String id) {
 		Connection conn = DataAccessInterface.getConnection();
-		user = new User();
+		post = new Post();
 		
 		try {
-			String query = "SELECT * FROM GCU.Users WHERE Email = ?";
+			String query = "SELECT * FROM GCU.Posts WHERE ID = ?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, email);
+			ps.setString(1, id);
 			
 			ResultSet rs = ps.executeQuery();
-			
+			 
 			while(rs.next()) {
-				user.setUserName(rs.getString("UserName"));
-				user.setEmail(rs.getString("Email"));
-				user.setFirstName(rs.getString("FirstName"));
-				user.setLastName(rs.getString("LastName"));
-				user.setPassword(rs.getString("Password"));
+				post.setPostTitle(rs.getString("title"));
+				post.setPostContent(rs.getString("content"));
+				post.setAuthorId("authorid");
+				
+				System.out.println("Post: " + post.toString());
 			}
 			
 			rs.close();
 			ps.close();
 			
-			System.out.println("Finished finding user by email!");
+			System.out.println("Finished finding post by id!");
 		}
 		catch(SQLException ex) {
-			System.out.println("Error trying to get user by email: " + ex.getMessage());
+			System.out.println("Error trying to get post by id: " + ex.getMessage());
 		}
 		finally {
 			if(conn != null) {
@@ -64,35 +64,33 @@ public class UserDataAccessObject implements UserDataAccessInterface<User> {
 			}
 		}
 		
-		return new User(user);
+		return new Post(post);
 	}
 
 	@Override
-	public List<User> getAll() {
+	public List<Post> getAll() {
 		Connection conn = DataAccessInterface.getConnection();
-		List<User> userList = new ArrayList<User>();
+		List<Post> postList = new ArrayList<Post>();
 		
 		try {
-			String query = "SELECT * FROM GCU.Users";
+			String query = "SELECT * FROM GCU.Posts";
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(query);
 			
 			while(rs.next()) {
-				user.setUserName(rs.getString("UserName"));
-				user.setEmail(rs.getString("Email"));
-				user.setFirstName(rs.getString("FirstName"));
-				user.setLastName(rs.getString("LastName"));
-				user.setPassword(rs.getString("Password"));
-				userList.add(new User(user));
+				post.setPostTitle(rs.getString("title"));
+				post.setPostContent(rs.getString("content"));
+				post.setAuthorId("authorid");
+				postList.add(new Post(post));
 			}
 			
 			rs.close();
 			statement.close();
 			
-			System.out.println("Finished generating user list!");
+			System.out.println("Finished generating post list!");
 		}
 		catch(SQLException ex) {
-			System.out.println("Error trying to get user list: " + ex.getMessage());
+			System.out.println("Error trying to get post list: " + ex.getMessage());
 		}
 		finally {
 			if(conn != null) {
@@ -106,34 +104,32 @@ public class UserDataAccessObject implements UserDataAccessInterface<User> {
 			}
 		}
 		
-		return userList;
+		return postList;
 	}
 
-	//Saves a single user to the database
+	//Saves a single post to the database
 	@Override
-	public void save(User t) {
+	public void save(Post t) {
 		Connection conn = DataAccessInterface.getConnection();
 		try {
-			String query = "INSERT INTO GCU.Users (FirstName, LastName, Username, Password, Email) VALUES (?, ?, ?, ?, ?)";
+			String query = "INSERT INTO GCU.Posts (title, content, authorId) VALUES (?, ?, ?)";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, t.getFirstName());
-			ps.setString(2, t.getLastName());
-			ps.setString(3, t.getUserName());
-			ps.setString(4, t.getPassword());
-			ps.setString(5, t.getEmail());
+			ps.setString(1, t.getPostTitle());
+			ps.setString(2, t.getPostContent());
+			ps.setString(3, t.getAuthorId());
 			
 			int rows = ps.executeUpdate();
 			if(rows < 1) {
-				System.out.println("Could not register user!");
+				System.out.println("Could not register post!");
 			}
 			else {
-				System.out.println("Registered user!");
+				System.out.println("Registered post!");
 			}
 			
 			ps.close();
 		}
 		catch(SQLException ex) {
-			System.out.println("Could not add new user: " + ex.getMessage());
+			System.out.println("Could not add new post: " + ex.getMessage());
 		}
 		finally {
 			if(conn != null) {
@@ -148,32 +144,30 @@ public class UserDataAccessObject implements UserDataAccessInterface<User> {
 		}
 	}
 
-	//updates a users with the given email to the new information in t
+	//updates a posts with the given ID to the new information in t
 	@Override
-	public void update(String email, User t) {
+	public void update(String id, Post t) {
 		Connection conn = DataAccessInterface.getConnection();
 		try {
-			String query = "UPDATE GCU.Users SET FirstName=?, LastName=?, Username=?, Password=?, Email=? WHERE Email=?";
+			String query = "UPDATE GCU.Posts SET title=?, content=?, authorid=? WHERE ID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, t.getFirstName());
-			ps.setString(2, t.getLastName());
-			ps.setString(3, t.getUserName());
-			ps.setString(4, t.getPassword());
-			ps.setString(5, t.getEmail());
-			ps.setString(6, email);
+			ps.setString(1, t.getPostTitle());
+			ps.setString(2, t.getPostContent());
+			ps.setString(3, t.getPostContent());
+			ps.setString(4, id);
 			
 			int rows = ps.executeUpdate();
 			if(rows < 1) {
-				System.out.println("Could not update user!");
+				System.out.println("Could not update post!");
 			}
 			else {
-				System.out.println("Updated user!");
+				System.out.println("Updated post!");
 			}
 			
 			ps.close();
 		}
 		catch(SQLException ex) {
-			System.out.println("Could not update user: " + ex.getMessage());
+			System.out.println("Could not update post: " + ex.getMessage());
 		}
 		finally {
 			if(conn != null) {
@@ -190,25 +184,25 @@ public class UserDataAccessObject implements UserDataAccessInterface<User> {
 
 	//deletes a single user with the given email
 	@Override
-	public void delete(User t) {
+	public void delete(Post t) {
 		Connection conn = DataAccessInterface.getConnection();
 		try {
-			String query = "DELETE FROM GCU.Users WHERE Email=?";
+			String query = "DELETE FROM GCU.Posts WHERE ID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, t.getEmail());
+			ps.setString(1, t.getId());
 			
 			int rows = ps.executeUpdate();
 			if(rows < 1) {
-				System.out.println("Could not delete user!");
+				System.out.println("Could not delete post!");
 			}
 			else {
-				System.out.println("User Deleted!");
+				System.out.println("Post Deleted!");
 			}
 			
 			ps.close();
 		}
 		catch(SQLException ex) {
-			System.out.println("Could not delete user: " + ex.getMessage());
+			System.out.println("Could not delete post: " + ex.getMessage());
 		}
 		finally {
 			if(conn != null) {

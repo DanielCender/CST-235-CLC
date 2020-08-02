@@ -15,16 +15,12 @@ import business.PostBusinessInterface;
 @ManagedBean
 @ViewScoped
 public class PostCreationController implements Serializable {
-//	@ManagedProperty("#{param.id}") private String postId;
-	
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
 	private PostBusinessInterface postService;
 	
-
 	private List<Post> posts;
-
 	
 	@PostConstruct
     public void init() {
@@ -40,11 +36,6 @@ public class PostCreationController implements Serializable {
     	}
         return posts;
     }
-	
-	
-//	public PostBusinessInterface getPosts() {
-//		return posts;
-//	}
 
 	/**
 	 * Creates a new post
@@ -57,17 +48,6 @@ public class PostCreationController implements Serializable {
 		System.out.println("Just added " + newPost.toString() + " to posts");
 		
 		// on success go immediately to login
-		return ("chooseEditCreatePosts.xhtml");
-	}
-	
-	/**
-	 * Updates an existing post
-	 * @param updatedPost
-	 * @return A string designating a return xhtml page
-	 */
-	public String onEdit(Post updatedPost) {
-		System.out.println("Updated post item: " + updatedPost);
-		// Make call to business interface that connects to dao
 		return ("chooseEditCreatePosts.xhtml");
 	}
 }

@@ -24,23 +24,23 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 	@Inject 
 	private Post post;
 	
-	//Gets a single article by its ID
 	@Override
 	public Post get(String id) {
 		Connection conn = DataAccessInterface.getConnection();
 		post = new Post();
 		
 		try {
-			String query = "SELECT * FROM GCU.Posts WHERE ID = ?";
+			String query = "SELECT * FROM \"GCU\".Posts WHERE id = ?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, id);
+			ps.setInt(1, Integer.valueOf(id));
 			
 			ResultSet rs = ps.executeQuery();
 			 
 			while(rs.next()) {
 				post.setPostTitle(rs.getString("title"));
 				post.setPostContent(rs.getString("content"));
-				post.setAuthorId("authorid");
+				post.setAuthorId(rs.getString("authorid"));
+				post.setId(rs.getInt("id"));
 				System.out.println("Post: " + post.toString());
 			}
 			
@@ -78,21 +78,18 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 			ResultSet rs = statement.executeQuery(query);
 			
 			while(rs.next()) {
-				ResultSetMetaData rsmd = rs.getMetaData();
-				int numberOfColumns = rsmd.getColumnCount();
-				System.out.println("Num of columns: " + numberOfColumns);
-				for(int i = 0; i < numberOfColumns; i++) {
-					System.out.println(rsmd.getColumnLabel(i + 1));
-				}
-				System.out.println(rs.getString("title"));
-				System.out.println(rs.getString("content"));
-				System.out.println(rs.getString("authorid"));
+//				ResultSetMetaData rsmd = rs.getMetaData();
+//				int numberOfColumns = rsmd.getColumnCount();
+//				System.out.println("Num of columns: " + numberOfColumns);
+//				for(int i = 0; i < numberOfColumns; i++) {
+//					System.out.println(rsmd.getColumnLabel(i + 1));
+//				}
 				post.setId(rs.getInt("id"));
 				post.setPostTitle(rs.getString("title"));
 				post.setPostContent(rs.getString("content"));
 				post.setAuthorId(rs.getString("authorid"));
 				postList.add(post);
-				post = new Post(); // refresh obj
+				post = new Post(); // reset temp object properties
 			}
 			
 			rs.close();
@@ -123,7 +120,7 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 	public void save(Post t) {
 		Connection conn = DataAccessInterface.getConnection();
 		try {
-			String query = "INSERT INTO \"GCU\".Posts (title, content, authorId) VALUES (?, ?, ?)";
+			String query = "INSERT INTO \"GCU\".Posts (title, content, authorid) VALUES (?, ?, ?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, t.getPostTitle());
 			ps.setString(2, t.getPostContent());
@@ -160,12 +157,12 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 	public void update(String id, Post t) {
 		Connection conn = DataAccessInterface.getConnection();
 		try {
-			String query = "UPDATE \"GCU\".\"Posts\" SET title=?, content=?, authorid=? WHERE ID=?";
+			String query = "UPDATE \"GCU\".Posts SET title=?, content=?, authorid=? WHERE ID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, t.getPostTitle());
 			ps.setString(2, t.getPostContent());
 			ps.setString(3, t.getPostContent());
-			ps.setString(4, id);
+			ps.setInt(4, Integer.valueOf(id));
 			
 			int rows = ps.executeUpdate();
 			if(rows < 1) {
@@ -198,7 +195,7 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 	public void delete(Post t) {
 		Connection conn = DataAccessInterface.getConnection();
 		try {
-			String query = "DELETE FROM \"GCU\".\"Posts\" WHERE ID=?";
+			String query = "DELETE FROM \"GCU\".Posts WHERE ID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, t.getId());
 			

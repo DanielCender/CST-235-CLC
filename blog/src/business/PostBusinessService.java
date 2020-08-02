@@ -23,8 +23,6 @@ public class PostBusinessService implements PostBusinessInterface {
 	
 	@Inject
 	private PostDataAccessInterface<Post> dao;
-	
-//	private List<Post> posts = new ArrayList<>();
 
     /**
      * Default constructor. 
@@ -35,13 +33,11 @@ public class PostBusinessService implements PostBusinessInterface {
 
 	@Override
     public void addPost(Post post) {
-//        posts.add(post);
         dao.save(post);
     }
 
 	@Override
     public void setPosts(List<Post> posts) {
-//        this.posts = posts;
         for(Post p : posts) {
         	dao.save(p);
         }
@@ -49,7 +45,6 @@ public class PostBusinessService implements PostBusinessInterface {
 
 	@Override
     public List<Post> getPosts() {
-//        return posts;
 		return dao.getAll();
     }
 	
@@ -57,6 +52,8 @@ public class PostBusinessService implements PostBusinessInterface {
 		dao.update(id, t);
 	}
 	
-	
-
+	@Override
+	public Post get(String id) {
+		return dao.get(id);
+	}
 }

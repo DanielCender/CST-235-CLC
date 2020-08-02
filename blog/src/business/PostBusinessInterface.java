@@ -16,4 +16,6 @@ public interface PostBusinessInterface {
 	public void addPost(Post post);
 	
 	public void update(String id, Post t);
+
+	public Post get(String id);
 }

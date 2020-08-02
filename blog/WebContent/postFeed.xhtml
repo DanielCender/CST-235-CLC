@@ -6,7 +6,7 @@
      	
     <ui:composition template="layouts/layout.xhtml">
 
-	<ui:define name="title">Login</ui:define>
+	<ui:define name="title">Feed</ui:define>
 
 	<ui:define name="header">
 		<div class="header">
@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			<ul class="postList">
-    			<ui:repeat value="#{postsController.posts.posts}" var="post" size="1">
+    			<ui:repeat value="#{postCreationController.posts}" var="post" size="1">
         			<li>
             			<h:button value="#{post.postTitle}" outcome="editPost.xhtml?id=#{post.id}" styleClass="special"></h:button>
         			</li>
@@ -43,7 +43,7 @@
 			<div style="text-align: center">
 			<!--Use ui for loop to insert new button from the list that holds all posts-->
 			<ul class="postList">
-    			<ui:repeat value="#{postsController.posts.posts}" var="post">
+    			<ui:repeat value="#{postCreationController.posts}" var="post">
         			<li>
             			<h:button value="#{post.postTitle}" outcome="editPost.xhtml?id=#{post.id}" styleClass="special"></h:button>
         			</li>

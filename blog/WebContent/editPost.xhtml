@@ -1,63 +1,71 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-   	xmlns:ui="http://java.sun.com/jsf/facelets"
-   	xmlns:f="http://java.sun.com/jsf/core"
-   	xmlns:h="http://java.sun.com/jsf/html"
-   	xmlns:p="http://primefaces.org/ui">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui"
+>
+  <ui:composition template="layouts/layout.xhtml">
+    <ui:define name="title">Edit Post</ui:define>
 
-<ui:composition template="layouts/layout.xhtml">
-	<ui:define name="title">Edit Post</ui:define>
+    <ui:define name="header">
+      <div class="header">
+        <h1>EDIT POST</h1>
+        <h3>A GREAT PLACE TO WRITE WHAT YOU'RE THINKING ABOUT</h3>
+      </div>
+    </ui:define>
 
-	<ui:define name="header">
-		<div class="header">
-			<h1>EDIT POST</h1>
-			<h3>A GREAT PLACE TO WRITE WHAT YOU'RE THINKING ABOUT</h3>
-		</div>
-	</ui:define>
-
-
-	<ui:define name="content">
-		
-		<div class="formWrapper">
-			<h:form id="editPostForm">
-				<h:graphicImage library="images" name="default.jpg" height="150px" width="600px"/><br/>	
-			<!-- 	<label for="img">UPLOAD IMAGE:</label>
+    <ui:define name="content">
+      <div class="formWrapper">
+        <h:form id="editPostForm">
+          <h:graphicImage library="images" name="default.jpg" height="150px" width="600px" /><br />
+          <!-- 	<label for="img">UPLOAD IMAGE:</label>
 				<input type="file" id="img" name="img" accept="image/*" class="input"></input><br/><br/> -->
-				
-				<!--  Hidden input to set the post ID for save operation -->
-				<h:inputHidden id="postId" value="#{param['id']}" />
-				
-				<div class="regBlock">
-					<div style="display: block">
-						<h:outputLabel for="authorId"><b>AUTHOR EMAIL</b></h:outputLabel>
-						<h:inputText id="authorId" value="#{post.authorId}"  styleClass="input" /> 
-						<p:watermark for="authorId" value="#{sessionUser.email}"/>
-						<h:message styleClass="form__messages--error" for="authorId"/>
-					</div>
-				</div>
-				
-				<!-- Need to update the value to update a post Title -->
-				<div class="regBlock">
-					<div style="display: block; text-align: left">
-						<h:outputLabel for="titleOfPost"><b>TITLE OF POST</b></h:outputLabel>
-						<h:inputText id="titleOfPost" value="#{post.postTitle}" styleClass="input" /> 
-						<p:watermark for="titleOfPost" value="#{post.postTitle}"/>
-						<h:message styleClass="form__messages--error" for="titleOfPost"/>			
-					</div>
-				</div>
-				
-				<h:inputTextarea id="textArea" value="#{post.postContent}" cols="72" rows="30" styleClass="textAreaInput" /><br/>
-				<p:watermark for="textArea" value="#{post.postContent}"/>
-				
-				
-				<!-- Command button needs to update some kind of list with posts -->
-				<div style="text-align: center">
-					<h:commandButton value="SAVE CHANGES" action="#{postCreationController.onEdit(post)}"  styleClass="special" />
-				</div>
-				
-			</h:form>
-		</div>
-		
-	</ui:define>
-</ui:composition>
+
+          <div class="regBlock">
+            <div style="display: block;">
+              <h:outputLabel for="authorId"><b>AUTHOR EMAIL</b></h:outputLabel>
+              <h:inputText
+                id="authorId"
+                value="#{postEditorController.author.email}"
+                styleClass="input"
+              />
+              <h:message styleClass="form__messages--error" for="authorId" />
+            </div>
+          </div>
+
+          <!-- Need to update the value to update a post Title -->
+          <div class="regBlock">
+            <div style="display: block; text-align: left;">
+              <h:outputLabel for="titleOfPost"><b>TITLE OF POST</b></h:outputLabel>
+              <h:inputText
+                id="titleOfPost"
+                value="#{postEditorController.toEdit.postTitle}"
+                styleClass="input"
+              />
+              <h:message styleClass="form__messages--error" for="titleOfPost" />
+            </div>
+          </div>
+
+          <h:inputTextarea
+            id="textArea"
+            value="#{postEditorController.toEdit.postContent}"
+            cols="72"
+            rows="30"
+            styleClass="textAreaInput"
+          /><br />
+
+          <!-- Command button needs to update some kind of list with posts -->
+          <div style="text-align: center;">
+            <h:commandButton
+              value="SAVE CHANGES"
+              action="#{postEditorController.onEdit(toEdit)}"
+              styleClass="special"
+            />
+          </div>
+        </h:form>
+      </div>
+    </ui:define>
+  </ui:composition>
 </html>

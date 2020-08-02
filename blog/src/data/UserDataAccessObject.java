@@ -3,6 +3,7 @@ package data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -30,18 +31,24 @@ public class UserDataAccessObject implements UserDataAccessInterface<User> {
 		user = new User();
 		
 		try {
-			String query = "SELECT * FROM \"GCU\".Users WHERE Email = ?";
+			String query = "SELECT * FROM \"GCU\".Users WHERE email = ?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, email);
 			
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				user.setUserName(rs.getString("UserName"));
-				user.setEmail(rs.getString("Email"));
-				user.setFirstName(rs.getString("FirstName"));
-				user.setLastName(rs.getString("LastName"));
-				user.setPassword(rs.getString("Password"));
+//				ResultSetMetaData rsmd = rs.getMetaData();
+//				int numberOfColumns = rsmd.getColumnCount();
+//				System.out.println("Num of columns: " + numberOfColumns);
+//				for(int i = 0; i < numberOfColumns; i++) {
+//					System.out.println(rsmd.getColumnLabel(i + 1));
+//				}
+				user.setUserName(rs.getString("username"));
+				user.setEmail(rs.getString("email"));
+				user.setFirstName(rs.getString("firstname"));
+				user.setLastName(rs.getString("lastname"));
+				user.setPassword(rs.getString("password"));
 			}
 			
 			rs.close();
@@ -78,11 +85,11 @@ public class UserDataAccessObject implements UserDataAccessInterface<User> {
 			ResultSet rs = statement.executeQuery(query);
 			
 			while(rs.next()) {
-				user.setUserName(rs.getString("UserName"));
-				user.setEmail(rs.getString("Email"));
-				user.setFirstName(rs.getString("FirstName"));
-				user.setLastName(rs.getString("LastName"));
-				user.setPassword(rs.getString("Password"));
+				user.setUserName(rs.getString("username"));
+				user.setEmail(rs.getString("email"));
+				user.setFirstName(rs.getString("firstname"));
+				user.setLastName(rs.getString("lastname"));
+				user.setPassword(rs.getString("password"));
 				userList.add(new User(user));
 			}
 			
@@ -114,7 +121,7 @@ public class UserDataAccessObject implements UserDataAccessInterface<User> {
 	public void save(User t) {
 		Connection conn = DataAccessInterface.getConnection();
 		try {
-			String query = "INSERT INTO GCU.Users (FirstName, LastName, Username, Password, Email) VALUES (?, ?, ?, ?, ?)";
+			String query = "INSERT INTO \"GCU\".Users (FirstName, LastName, Username, Password, Email) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, t.getFirstName());
 			ps.setString(2, t.getLastName());

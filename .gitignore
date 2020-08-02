@@ -2,5 +2,5 @@
 
 target
 
-.classpath
-.settings
+blog/.classpath
+blog/.project

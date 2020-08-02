@@ -30,7 +30,7 @@ public class UserDataAccessObject implements DataAccessInterface<User> {
 		user = new User();
 		
 		try {
-			String query = "SELECT * FROM GCU.Users WHERE EMAIL = ?";
+			String query = "SELECT * FROM GCU.Users WHERE Email = ?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, email);
 			

@@ -1,23 +1,35 @@
 -- Populate some entries for Users
-INSERT INTO GCU.Users
-	(FirstName, MiddleInitial, LastName, Username, Password, Email)
+INSERT INTO "GCU".Users
+	(FirstName, LastName, Username, Password, Email)
 VALUES
-	('Daniel', 'R', 'Cender', 'daniel', '123456', 'dan@dan.com');
-INSERT INTO GCU.Users
-	(FirstName, MiddleInitial, LastName, Username, Password, Email)
+	('Daniel', 'Cender', 'danc', 'danc', 'dan@gmail.com');
+INSERT INTO "GCU".Users
+	(FirstName, LastName, Username, Password, Email)
 VALUES
-	('Eric', 'R', 'Erickson', 'ericson', '123456', 'e@gmail.com');
+	('Marc', 'Teixeira', 'marct', 'marct', 'marc@gmail.com');
+INSERT INTO "GCU".Users
+	(FirstName, LastName, Username, Password, Email)
+VALUES
+	('Tim', 'James', 'timj', 'timj', 'tim@gmail.com');
+INSERT INTO "GCU".Users
+	(FirstName, LastName, Username, Password, Email)
+VALUES
+	('Chance', 'Anderson', 'chancea', 'chancea', 'chance@gmail.com');
 
--- Populate some entries for Books
-INSERT INTO GCU.Books
-	(Title, Author, ISBN, Publisher)
+-- Populate some entries for Posts
+INSERT INTO "GCU".Posts
+	(Title, AuthorId, Content)
 VALUES
-	('To Kill A Mockingbird', 'Harper Lee', '1232-432432', 'Harper Collins');
-INSERT INTO GCU.Books
-	(Title, Author, ISBN, Publisher)
+	('Post 1', 'dan@gmail.com', 'Some post content')
+INSERT INTO "GCU".Posts
+	(Title, AuthorId, Content)
 VALUES
-	('The Fellowship of the Ring', 'J.R.R. Tokien', '1232-432433', 'Harper Collins');
-INSERT INTO GCU.Books
-	(Title, Author, ISBN, Publisher)
+	('To Kill A Mockingbird', 'dan@gmail.com', 'Some post content')
+INSERT INTO "GCU".Posts
+	(Title, AuthorId, Content)
 VALUES
-	('The BFG', 'Roald Dahl', '1232-432443243', 'Harper Collins');
+	('The Fellowship of the Ring', 'dan@gmail.com', 'Some post content')
+INSERT INTO "GCU".Posts
+	(Title, AuthorId, Content)
+VALUES
+	('The BFG', 'dan@gmail.com', 'Some post content')

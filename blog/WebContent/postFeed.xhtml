@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     	xmlns:ui="http://java.sun.com/jsf/facelets"
+     	xmlns:f="http://java.sun.com/jsf/core"
+     	xmlns:h="http://java.sun.com/jsf/html">
+     	
+    <ui:composition template="layouts/layout.xhtml">
+
+	<ui:define name="title">Feed</ui:define>
+
+	<ui:define name="header">
+		<div class="header">
+			<h1>THIS IS YOU</h1>
+			<h3>IF YOU PUT YOUR MIND TO IT, YOU CAN ACCOMPLISH ANYTHING.  -GEORGE MCFLY</h3>
+		</div>
+	</ui:define>
+
+
+	<ui:define name="content">
+		
+		<div class="formWrapper">
+			<div class="regBlock">
+				<div style="display: block; text-align: left">
+					<h2>LATEST</h2>
+				</div>
+			</div>
+			<ul class="postList">
+    			<ui:repeat value="#{postCreationController.posts}" var="post" size="1">
+        			<li>
+            			<h:button value="#{post.postTitle}" outcome="editPost.xhtml?id=#{post.id}" styleClass="special"></h:button>
+        			</li>
+   				</ui:repeat>
+			</ul>
+				
+			<f:verbatim><hr style="height: 5px; border-width: 0; color: black; background-color: black; width: 600px;"/></f:verbatim>
+			
+			<div class="regBlock">
+				<div style="display: block; text-align: left">
+					<h2>PAST ARTICLES</h2>
+				</div>
+			</div>
+			
+			<div style="text-align: center">
+			<!--Use ui for loop to insert new button from the list that holds all posts-->
+			<ul class="postList">
+    			<ui:repeat value="#{postCreationController.posts}" var="post">
+        			<li>
+            			<h:button value="#{post.postTitle}" outcome="editPost.xhtml?id=#{post.id}" styleClass="special"></h:button>
+        			</li>
+   				</ui:repeat>
+			</ul>
+			</div>
+			
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

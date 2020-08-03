@@ -1,0 +1,209 @@
+@charset "ISO-8859-1";
+
+/* Some quick style resets */
+html {
+	height: 100%;
+	margin: 0;
+	font-family: Arial, sans-serif;
+}
+
+body {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+#nav-pills {
+	width: 500px;
+	display: flex;
+}
+
+#nav-pills input {
+	border: 1px solid black;
+	padding: 1rem;
+	background-color: transparent;
+}
+
+#nav-pills input:hover {
+	background-color: black;
+	-webkit-box-shadow: 9px 3px 16px -8px rgba(0,0,0,0.39);
+	-moz-box-shadow: 9px 3px 16px -8px rgba(0,0,0,0.39);
+	box-shadow: 9px 3px 16px -8px rgba(0,0,0,0.39);
+	color: white;
+}
+
+/*Field styling*/
+.input {
+	background-color: #000000;
+	border: none;
+  	color: white;
+  	margin: 8px 8px;
+	padding: 15px 20px;
+	width: 250px;
+}
+
+.input:hover {
+background-color: #808080;
+}
+
+.input:focus {
+  background-color: #2d2d2d;
+}
+
+.textInput {
+	background-color: #ffffff;
+	border: 5px;
+  	color: black;
+  	margin: 8px 8px;
+	padding: 15px 20px;
+	width: 600px;
+}
+
+.textInput:hover {
+background-color: #808080;
+}
+
+.textInput:focus {
+  background-color: #2d2d2d;
+  color: white;
+}
+
+.textAreaInput {
+	background-color: #efefef;
+	border: 5px;
+  	color: black;
+  	margin: 8px 8px;
+	padding: 15px 20px;
+	width: 600px;
+}
+
+.textAreaInput:hover {
+background-color: #808080;
+}
+
+.textAreaInput:focus {
+  background-color: #2d2d2d;
+  color: white;
+}
+
+/*Button styling*/
+.button {
+	background-color: #000000; /* Black */
+	border: none;
+	color: white;
+	font-size: 24px;
+	margin: 2px 0;
+	padding: 10px 40px;
+	text-align: center;
+	transition-duration: 0.4s;
+	width: 290px;
+}
+
+.button:hover {
+	background-color: #ffffff; /* White */
+	color: black;
+}
+
+.special {
+	background-color: #000000; /* Black */
+	border: none;
+	color: white;
+	font-size: 24px;
+	margin: 8px 0;
+	padding: 10px 40px;
+	text-align: center;
+	transition-duration: 0.4s;
+	width: 600px;
+}
+
+.special:hover {
+	background-color: #ffffff; /* White */
+	color: black;
+}
+
+/* Layout styles and sticky footer */
+.contentWrapper{
+	flex: 1 0 auto;
+	min-height: auto;
+}
+
+.header{
+	text-align: center;
+}
+
+.footer{
+	flex-shrink: 0;
+	height: 30px;
+	text-align: center;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+.footer h6{
+	margin: auto;
+}
+
+/* form styles */
+.form__messages--error {
+	color: red;
+	display: block;
+}
+
+.formWrapper {
+	text-align: center;
+}
+
+/* registration form specific styles */
+.regBlock {
+	display: flex; 
+	justify-content: space-between; 
+	width: 600px; 
+	margin: auto;
+	padding: 10px;
+}
+
+.regBlock label{
+	float: left;
+	margin: 8px 0px;
+	padding: 15px 20px;
+}
+
+/* Navigation bar styles */
+.navbar{
+	text-align: center;
+	width: 100%;
+}
+
+.navbar ul{
+	list-style-type: none;
+	background-color: #000000;
+	margin: 0;
+	padding: 0;
+}
+
+.navbar li{
+	display: inline;
+}
+
+.navbar li:last-child{
+	float: right;
+}
+
+.navbar li input{
+  	color: white;
+  	text-align: center;
+  	padding: 14px 16px;
+  	background: transparent;
+  	border: none;
+  	text-decoration: none;
+}
+
+.navbar li input:hover{
+	background-color: #808080;
+}
+
+.postList {
+	list-style-type: none;
+	padding: 0;
+}
+

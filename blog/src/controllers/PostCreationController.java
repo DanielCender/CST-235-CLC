@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
@@ -47,22 +49,21 @@ public class PostCreationController implements Serializable {
 	 * @return A String to either the chooseEditCreatePost.xhtml page for success or to the feed when we have that made
 	 */
 	public String onSubmit(Post newPost) {
-		// set the author information
-		try {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		// set the author information from session cookie
 		System.out.println(cookieService.toString());
 		Cookie cookie = cookieService.getCookie("currentUser");
-		if(cookie == null) System.out.println("Cookie is null!!!!");
-		System.out.println(cookie.toString());
+		if(cookie == null) {
+			System.out.println("Auth Cookie is unset!!!!");
+			fc.addMessage("newPostForm:titleOfPost", new FacesMessage("Please log in before writing any new posts!"));
+			return ""; // stay on page
+		}
+		
 		String userId = cookie.getValue();
-		System.out.println("userId: " + userId);
 		newPost.setAuthorId(userId);
 		//add the post
 		postService.addPost(newPost);
-		System.out.println("Just added " + newPost.toString() + " to posts");
-		} catch(Exception e) {
-			System.out.println(e.getMessage());
-			System.out.println(e.getStackTrace());
-		}
+		System.out.println("Just added " + newPost.toString() + " to Posts");
 		// on success go immediately to login
 		return ("chooseEditCreatePosts.xhtml");
 	}

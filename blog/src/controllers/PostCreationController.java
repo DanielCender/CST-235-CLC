@@ -5,17 +5,21 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 
 import beans.Post;
 import business.PostBusinessInterface;
+import services.CookieServiceInterface;
 
 @ManagedBean
 @ViewScoped
 public class PostCreationController implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
+	private CookieServiceInterface cookieService;
 	
 	@Inject
 	private PostBusinessInterface postService;
@@ -43,10 +47,22 @@ public class PostCreationController implements Serializable {
 	 * @return A String to either the chooseEditCreatePost.xhtml page for success or to the feed when we have that made
 	 */
 	public String onSubmit(Post newPost) {
+		// set the author information
+		try {
+		System.out.println(cookieService.toString());
+		Cookie cookie = cookieService.getCookie("currentUser");
+		if(cookie == null) System.out.println("Cookie is null!!!!");
+		System.out.println(cookie.toString());
+		String userId = cookie.getValue();
+		System.out.println("userId: " + userId);
+		newPost.setAuthorId(userId);
 		//add the post
 		postService.addPost(newPost);
 		System.out.println("Just added " + newPost.toString() + " to posts");
-		
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getStackTrace());
+		}
 		// on success go immediately to login
 		return ("chooseEditCreatePosts.xhtml");
 	}

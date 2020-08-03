@@ -23,15 +23,7 @@
 				<h:graphicImage library="images" name="default.jpg" height="150px" width="600px"/><br/>	
 			<!-- 	<label for="img">UPLOAD IMAGE:</label>
 				<input type="file" id="img" name="img" accept="image/*" class="input"></input><br/><br/> -->
-				
-				<div class="regBlock">
-					<div style="display: block">
-						<h:outputLabel for="firstName"><b>AUTHOR EMAIL</b></h:outputLabel>
-						<h:inputText id="authorId" value="#{post.authorId}"  styleClass="input" /> 
-						<p:watermark for="authorId" value="#{sessionUser.email}"/>
-						<h:message styleClass="form__messages--error" for="authorId"/>
-					</div>
-				</div>
+			
 				
 				<!-- Need to update the value to update a post Title -->
 				<div class="regBlock">

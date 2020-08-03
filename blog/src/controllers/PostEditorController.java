@@ -12,12 +12,15 @@ import beans.Post;
 import beans.User;
 import business.PostBusinessInterface;
 import business.UserAuthenticationService;
+import services.CookieServiceInterface;
 
 @ManagedBean
 @ViewScoped
 public class PostEditorController  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Inject 
+	private CookieServiceInterface cookieService;
 	@Inject
 	private PostBusinessInterface postService;
 	@Inject
@@ -60,12 +63,12 @@ public class PostEditorController  implements Serializable {
 	 */
 	public String onEdit(Post updatedPost) {
 		System.out.println("Updated post item: " + updatedPost.toString());
-		try {
+		// Get post updater
+		String authorId = cookieService.getCookie("currentUser").getValue();
+		if(authorId != null) updatedPost.setAuthorId(authorId);
+		
 		postService.update(String.valueOf(updatedPost.getId()), updatedPost);
 		
-		} catch(Exception e) {
-			System.out.println("Err: " + e.getMessage());
-		}
 		return ("chooseEditCreatePosts.xhtml?faces-redirect=true");
 	}
 }

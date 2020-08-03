@@ -7,11 +7,14 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import business.UserAuthenticationInterface;
+import services.CookieServiceInterface;
 import beans.User;
 
 @ManagedBean
 @ViewScoped
 public class LoginFormController {
+	@Inject 
+	private CookieServiceInterface cookieService;
 	
     @Inject
     private UserAuthenticationInterface auth;
@@ -22,6 +25,10 @@ public class LoginFormController {
 			user = auth.getUser(user.getEmail());
 			fc.getExternalContext().getSessionMap().put("sessionUser", user);
 			fc.addMessage("index", new FacesMessage("You have been logged in as " + user.getUserName() + "!"));
+			
+			// set cookie which expires in 4 hours
+			cookieService.setCookie("currentUser", user.getEmail(), 1600);
+			
 			// Successful login redirects to index page
 			return "index.xhtml";
 		} else {

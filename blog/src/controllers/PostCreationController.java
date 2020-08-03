@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.Serializable;
 import java.util.List;
+//import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -9,9 +10,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import javax.servlet.http.Cookie;
+//import javax.servlet.http.Cookie;
 
 import beans.Post;
+import beans.User;
 import business.PostBusinessInterface;
 import services.CookieServiceInterface;
 
@@ -20,8 +22,8 @@ import services.CookieServiceInterface;
 public class PostCreationController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Inject
-	private CookieServiceInterface cookieService;
+//	@Inject
+//	private CookieServiceInterface cookieService;
 	
 	@Inject
 	private PostBusinessInterface postService;
@@ -49,17 +51,18 @@ public class PostCreationController implements Serializable {
 	 * @return A String to either the chooseEditCreatePost.xhtml page for success or to the feed when we have that made
 	 */
 	public String onSubmit(Post newPost) {
+		// set the author information from session map
 		FacesContext fc = FacesContext.getCurrentInstance();
-		// set the author information from session cookie
-		System.out.println(cookieService.toString());
-		Cookie cookie = cookieService.getCookie("currentUser");
-		if(cookie == null) {
-			System.out.println("Auth Cookie is unset!!!!");
+		User sessionUser = (User) fc.getExternalContext().getSessionMap().get("sessionUser");
+//		System.out.println(cookieService.toString());
+//		Cookie cookie = cookieService.getCookie("currentUser");
+		if(sessionUser == null || sessionUser.getEmail() == null) {
+			System.out.println("Auth session is unset!!!!");
 			fc.addMessage("newPostForm:titleOfPost", new FacesMessage("Please log in before writing any new posts!"));
 			return ""; // stay on page
 		}
 		
-		String userId = cookie.getValue();
+		String userId = sessionUser.getEmail();
 		newPost.setAuthorId(userId);
 		//add the post
 		postService.addPost(newPost);

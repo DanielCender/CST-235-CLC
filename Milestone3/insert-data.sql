@@ -1,35 +1,44 @@
--- Populate some entries for Users
-INSERT INTO "GCU".Users
-	(FirstName, LastName, Username, Password, Email)
+-- Create Some Users
+INSERT INTO GCU.Users
+	(FirstName, MiddleInitial, LastName, Username, Password, Email)
 VALUES
-	('Daniel', 'Cender', 'danc', 'danc', 'dan@gmail.com');
-INSERT INTO "GCU".Users
-	(FirstName, LastName, Username, Password, Email)
+	('Daniel', 'R', 'Cender', 'daniel', '123456', 'dan@dan.com');
+INSERT INTO GCU.Users
+	(FirstName, MiddleInitial, LastName, Username, Password, Email)
 VALUES
-	('Marc', 'Teixeira', 'marct', 'marct', 'marc@gmail.com');
-INSERT INTO "GCU".Users
-	(FirstName, LastName, Username, Password, Email)
-VALUES
-	('Tim', 'James', 'timj', 'timj', 'tim@gmail.com');
-INSERT INTO "GCU".Users
-	(FirstName, LastName, Username, Password, Email)
-VALUES
-	('Chance', 'Anderson', 'chancea', 'chancea', 'chance@gmail.com');
+	('Eric', 'R', 'Erickson', 'ericson', '123456', 'e@gmail.com');
 
--- Populate some entries for Posts
-INSERT INTO "GCU".Posts
-	(Title, AuthorId, Content)
+-- Create Some Tags - I know there's a more efficient method for this
+INSERT INTO GCU.Tags
+	(Name)
 VALUES
-	('Post 1', 'dan@gmail.com', 'Some post content');
-INSERT INTO "GCU".Posts
-	(Title, AuthorId, Content)
+	('education')
+INSERT INTO GCU.Tags
+	(Name)
 VALUES
-	('To Kill A Mockingbird', 'dan@gmail.com', 'Some post content');
-INSERT INTO "GCU".Posts
-	(Title, AuthorId, Content)
+	('software development')
+INSERT INTO GCU.Tags
+	(Name)
 VALUES
-	('The Fellowship of the Ring', 'dan@gmail.com', 'Some post content');
-INSERT INTO "GCU".Posts
-	(Title, AuthorId, Content)
+	('coding')
+INSERT INTO GCU.Tags
+	(Name)
 VALUES
-	('The BFG', 'dan@gmail.com', 'Some post content');
+	('college life')
+
+-- Create Some Posts
+INSERT INTO GCU.Posts
+	(Title, AuthorID, Content, Created, Updated)
+VALUES
+	('Click Funnel Strategies', 'e@gmail.com', 'Blog text....', DATETIME(), DATETIME());
+INSERT INTO GCU.Posts
+	(Title, AuthorID, Content, Created, Updated)
+VALUES
+	('Click Funnel Strategies', 'e@gmail.com', 'Blog text....', DATETIME(), DATETIME());
+
+
+-- Create Some PostTags - need to revise
+-- INSERT INTO GCU.PostTags
+-- 	(PostID, TagID)
+-- VALUES
+-- 	()

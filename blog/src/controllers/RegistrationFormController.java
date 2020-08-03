@@ -40,8 +40,6 @@ public class RegistrationFormController implements Serializable{
 		//add the user
 		users.addUser(newUser);
 		
-		// TODO: success message can be added here to show on the login page
-		
 		// on success go immediately to login
 		return ("login.xhtml");
 	}

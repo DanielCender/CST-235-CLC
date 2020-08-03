@@ -1,70 +1,69 @@
 -- Create Schema
-DROP TABLE IF EXISTS "GCU".Posts;
-DROP TABLE IF EXISTS "GCU".Users;
-DROP SCHEMA IF EXISTS "GCU"
+DROP TABLE GCU.Users;
+DROP TABLE GCU.Posts;
+DROP TABLE GCU.Tags;
+DROP TABLE GCU.PostTags;
+DROP SCHEMA GCU
+
 RESTRICT;
 
--- SCHEMA: GCU
-
--- DROP SCHEMA "GCU" ;
-
-CREATE SCHEMA "GCU"
-    AUTHORIZATION postgres;
+CREATE SCHEMA GCU;
 
 -- Create Tables
-
--- Table: GCU.users
-
--- DROP TABLE "GCU".users;
-
-CREATE TABLE "GCU".users
+CREATE TABLE GCU.Users
 (
-	email character varying(200) COLLATE pg_catalog
-	."default" NOT NULL,
-    firstname character varying
-	(50) COLLATE pg_catalog."default" NOT NULL,
-    lastname character varying
-	(50) COLLATE pg_catalog."default" NOT NULL,
-    username character varying
-	(50) COLLATE pg_catalog."default" NOT NULL,
-    password character varying
-	(200) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT primary_key PRIMARY KEY
-	(email)
-)
+	Email VARCHAR(200) NOT NULL,
+	FirstName VARCHAR
+	(50) NOT NULL,
+	MiddleInitial VARCHAR
+	(2) NOT NULL,
+	LastName VARCHAR
+	(50) NOT NULL,
+	UserName VARCHAR
+	(50) NOT NULL,
+	Password VARCHAR
+	(200) NOT NULL,
+	CONSTRAINT primary_key
+PRIMARY KEY
+(Email)
+);
 
-TABLESPACE pg_default;
+CREATE TABLE GCU.Posts
+(
+	ID INT NOT NULL
+	GENERATED ALWAYS AS IDENTITY,
+		Title VARCHAR
+	(255) NOT NULL,
+		AuthorID VARCHAR
+	(255) NOT NULL,
+		Content VARCHAR NOT NULL,
+		Created DATETIME NOT NULL,
+		Updated DATETIME NOT NULL,
+		Deleted DATETIME,
+	CONSTRAINT foreign_key
+	FOREIGN KEY
+	(AuthorId) REFERENCES Users.Email
+	);
 
-	ALTER TABLE "GCU".users
-    OWNER to postgres;
-
-
-	-- Table: GCU.posts
-
-	-- DROP TABLE "GCU".posts;
-
-	CREATE TABLE "GCU".posts
+	CREATE TABLE GCU.Tags
 	(
-		id integer NOT NULL
-		GENERATED ALWAYS AS IDENTITY
-		( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-    title character varying
-		(255) COLLATE pg_catalog."default" NOT NULL,
-    content text COLLATE pg_catalog."default" NOT NULL,
-    authorid character varying
-		(200) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT post_author_id FOREIGN KEY
-		(authorid)
-        REFERENCES "GCU".users
-		(email) MATCH SIMPLE
-        ON
-		UPDATE CASCADE
-        ON
-		DELETE CASCADE
-)
+		-- ID INT NOT NULL
+		-- GENERATED ALWAYS AS IDENTITY,
+		Name VARCHAR
+		(30) NOT NULL,
+		CONSTRAINT primary_key
+		PRIMARY KEY
+		(Name)
+	);
 
-TABLESPACE
-		pg_default;
-
-		ALTER TABLE "GCU".posts
-    OWNER to postgres;
+	CREATE TABLE GCU.PostTags
+	(
+		PostID INT
+			NOT NULL,
+		TagID VARCHAR(30) NOT NULL,
+		CONSTRAINT foreign_key1
+	FOREIGN KEY (PostID) REFERENCES Posts.ID,
+		CONSTRAINT foreign_key2
+	FOREIGN KEY
+		(TagID) REFERENCES Tags.Title
+	)

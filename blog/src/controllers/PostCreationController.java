@@ -2,7 +2,6 @@ package controllers;
 
 import java.io.Serializable;
 import java.util.List;
-//import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -10,20 +9,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-//import javax.servlet.http.Cookie;
 
 import beans.Post;
 import beans.User;
 import business.PostBusinessInterface;
-import services.CookieServiceInterface;
 
 @ManagedBean
 @ViewScoped
 public class PostCreationController implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-//	@Inject
-//	private CookieServiceInterface cookieService;
 	
 	@Inject
 	private PostBusinessInterface postService;
@@ -54,8 +48,6 @@ public class PostCreationController implements Serializable {
 		// set the author information from session map
 		FacesContext fc = FacesContext.getCurrentInstance();
 		User sessionUser = (User) fc.getExternalContext().getSessionMap().get("sessionUser");
-//		System.out.println(cookieService.toString());
-//		Cookie cookie = cookieService.getCookie("currentUser");
 		if(sessionUser == null || sessionUser.getEmail() == null) {
 			System.out.println("Auth session is unset!!!!");
 			fc.addMessage("newPostForm:titleOfPost", new FacesMessage("Please log in before writing any new posts!"));

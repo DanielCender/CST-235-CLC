@@ -219,4 +219,39 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 			}
 		}
 	}
+	
+	//deletes a post using a users email for validation
+	@Override
+	public void deletePost(String id, Post t) {
+		Connection conn = DataAccessInterface.getConnection();
+		try {
+			String query = "DELETE FROM \"GCU\".Posts WHERE ID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, t.getId());
+			
+			int rows = ps.executeUpdate();
+			if(rows < 1) {
+				System.out.println("Could not delete post!");
+			}
+			else {
+				System.out.println("Post Deleted!");
+			}
+			
+			ps.close();
+		}
+		catch(SQLException ex) {
+			System.out.println("Could not delete post: " + ex.getMessage());
+		}
+		finally {
+			if(conn != null) {
+				try {
+					conn.close();
+					System.out.println("Connection Closed!");
+				}
+				catch(SQLException ex) {
+					System.out.println("Problem Closing Connection!");
+				}
+			}
+		}
+	}
 }

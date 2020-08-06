@@ -18,4 +18,6 @@ public interface PostBusinessInterface {
 	public void update(String id, Post t);
 
 	public Post get(String id);
+	
+	public void deletePost(String id, Post t);
 }

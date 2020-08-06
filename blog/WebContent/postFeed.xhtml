@@ -27,7 +27,7 @@
 			<ul class="postList">
     			<ui:repeat value="#{postCreationController.posts}" var="post" size="1">
         			<li>
-            			<h:button value="#{post.postTitle}" outcome="editPost.xhtml?id=#{post.id}" styleClass="special"></h:button>
+            			<h:button value="#{post.postTitle}" outcome="viewPost.xhtml?id=#{post.id}" styleClass="special"></h:button>
         			</li>
    				</ui:repeat>
 			</ul>
@@ -45,7 +45,7 @@
 			<ul class="postList">
     			<ui:repeat value="#{postCreationController.posts}" var="post">
         			<li>
-            			<h:button value="#{post.postTitle}" outcome="editPost.xhtml?id=#{post.id}" styleClass="special"></h:button>
+            			<h:button value="#{post.postTitle}" outcome="viewPost.xhtml?id=#{post.id}" styleClass="special"></h:button>
         			</li>
    				</ui:repeat>
 			</ul>

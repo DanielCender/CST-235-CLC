@@ -56,4 +56,9 @@ public class PostBusinessService implements PostBusinessInterface {
 	public Post get(String id) {
 		return dao.get(id);
 	}
+
+	@Override
+	public void deletePost(String id, Post t) {
+		dao.deletePost(id, t);	
+	}
 }

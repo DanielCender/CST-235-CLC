@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="layouts/layout.xhtml">
+	<ui:define name="title">View Post</ui:define>
+
+	<ui:define name="header">
+		<div class="header">
+			<h1>#{postEditorController.toEdit.postTitle}</h1>
+			<h3>WRITTEN BY: #{postEditorController.author.firstName}
+				#{postEditorController.author.lastName}</h3>
+		</div>
+	</ui:define>
+
+	<ui:define name="content">
+		
+		<div class="formWrapper">
+			<h:button value="BACK TO FEED" outcome="postFeed.xhtml" styleClass="special"></h:button>
+			<f:verbatim><hr style="height: 5px; border-width: 0; color: black; background-color: black; width: 600px;"/></f:verbatim>
+			
+			<h:graphicImage library="images" name="default.jpg" height="150px" width="600px" />
+			<br />
+			<div class="regBlock">
+	            <div style="display: block; text-align: left;">
+				<p >#{postEditorController.toEdit.postContent}</p>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

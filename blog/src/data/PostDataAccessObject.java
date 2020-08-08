@@ -3,7 +3,6 @@ package data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -35,6 +34,7 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 			ps.setInt(1, Integer.valueOf(id));
 			
 			ResultSet rs = ps.executeQuery();
+			System.out.println("Result Set: " + rs.toString());
 			 
 			while(rs.next()) {
 				post.setPostTitle(rs.getString("title"));

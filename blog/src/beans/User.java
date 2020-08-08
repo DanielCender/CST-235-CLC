@@ -10,10 +10,6 @@ import org.hibernate.validator.constraints.NotBlank;
 @ManagedBean(name="user")
 @ViewScoped
 public class User implements Serializable{
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@NotBlank(message="First Name must not be empty!")

@@ -15,7 +15,7 @@ import beans.Post;
 @RequestScoped
 @Path("/posts")
 @Produces({ "application/xml", "application/json" })
-public class PostsRestService {
+public class PostsRestService implements PostRestServiceInterface {
 
 	@Inject
 	private PostBusinessService service;

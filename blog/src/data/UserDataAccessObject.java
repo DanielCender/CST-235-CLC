@@ -78,6 +78,7 @@ public class UserDataAccessObject implements UserDataAccessInterface<User> {
 	public List<User> getAll() {
 		Connection conn = DataAccessInterface.getConnection();
 		List<User> userList = new ArrayList<User>();
+		user = new User();
 		
 		try {
 			String query = "SELECT * FROM \"GCU\".Users";

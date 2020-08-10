@@ -3,7 +3,6 @@ package data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -35,6 +34,7 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 			ps.setInt(1, Integer.valueOf(id));
 			
 			ResultSet rs = ps.executeQuery();
+			System.out.println("Result Set: " + rs.toString());
 			 
 			while(rs.next()) {
 				post.setPostTitle(rs.getString("title"));
@@ -188,6 +188,41 @@ public class PostDataAccessObject implements PostDataAccessInterface<Post> {
 	//deletes a single user with the given email
 	@Override
 	public void delete(Post t) {
+		Connection conn = DataAccessInterface.getConnection();
+		try {
+			String query = "DELETE FROM \"GCU\".Posts WHERE ID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, t.getId());
+			
+			int rows = ps.executeUpdate();
+			if(rows < 1) {
+				System.out.println("Could not delete post!");
+			}
+			else {
+				System.out.println("Post Deleted!");
+			}
+			
+			ps.close();
+		}
+		catch(SQLException ex) {
+			System.out.println("Could not delete post: " + ex.getMessage());
+		}
+		finally {
+			if(conn != null) {
+				try {
+					conn.close();
+					System.out.println("Connection Closed!");
+				}
+				catch(SQLException ex) {
+					System.out.println("Problem Closing Connection!");
+				}
+			}
+		}
+	}
+	
+	//deletes a post using a users email for validation
+	@Override
+	public void deletePost(String id, Post t) {
 		Connection conn = DataAccessInterface.getConnection();
 		try {
 			String query = "DELETE FROM \"GCU\".Posts WHERE ID=?";

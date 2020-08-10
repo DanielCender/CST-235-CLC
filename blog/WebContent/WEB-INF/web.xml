@@ -11,10 +11,32 @@
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
-	<welcome-file>index.xhtml</welcome-file>
-</welcome-file-list>
-<context-param>
-	<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_AS_NULL</param-name>
-	<param-value>true></param-value>
-</context-param>
+    <welcome-file>index.xhtml</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_AS_NULL</param-name>
+    <param-value>true></param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>JAX-RS Servlet</servlet-name>
+    <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <context-param>
+    <param-name>resteasy.scan</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>resteasy.servlet.mapping.prefix</param-name>
+    <param-value>/rest</param-value>
+  </context-param>
+  <listener>
+    <listener-class>
+        org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap
+    </listener-class>
+  </listener>
+  <servlet-mapping>
+    <servlet-name>JAX-RS Servlet</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
 </web-app>

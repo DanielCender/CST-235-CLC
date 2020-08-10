@@ -18,9 +18,23 @@
 
     <ui:define name="content">
       <div class="formWrapper">
+      	
+        
         <h:form id="editPostForm">
-          <h:graphicImage library="images" name="default.jpg" height="150px" width="600px" /><br />
-          <!-- 	<label for="img">UPLOAD IMAGE:</label>
+        	<h:commandButton 
+        	action="#{postEditorController.onDelete(postEditorController.toEdit)}" 
+        	value="DELETE POST" 
+        	styleClass="delete" 
+        	ajax="false"/>				
+			<f:verbatim>
+				<hr style="height: 5px; 
+					border-width: 0; 
+					color: black; 
+					background-color: black; 
+					width: 600px;"/>
+			</f:verbatim>
+          	<h:graphicImage library="images" name="default.jpg" height="150px" width="600px" /><br />
+          	<!-- 	<label for="img">UPLOAD IMAGE:</label>
 				<input type="file" id="img" name="img" accept="image/*" class="input"></input><br/><br/> -->
 			<h:inputHidden value = "#{postEditorController.toEdit.id}" id = "hiddenPostId" /> 
 			<h:inputHidden value = "#{postEditorController.toEdit.authorId}" id = "hiddenAuthorId" /> 

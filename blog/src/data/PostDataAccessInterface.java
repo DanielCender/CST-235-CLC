@@ -11,4 +11,5 @@ public interface PostDataAccessInterface<T> extends DataAccessInterface<T> {
 	void save(T t);
 	void update(String id, T t);
 	void delete(T t);
+	void deletePost(String id, T t);
 }

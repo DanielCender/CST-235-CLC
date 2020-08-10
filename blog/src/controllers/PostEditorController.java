@@ -77,4 +77,26 @@ public class PostEditorController  implements Serializable {
 		
 		return ("chooseEditCreatePosts.xhtml?faces-redirect=true");
 	}
+	
+	// Method for handling deletion of posts
+	public String onDelete(Post deletedPost) {
+		
+		System.out.println("Deleted post item: " + deletedPost.toString());
+		
+		// set the author information from session map
+		FacesContext fc = FacesContext.getCurrentInstance();
+		User sessionUser = (User) fc.getExternalContext().getSessionMap().get("sessionUser");
+		if(sessionUser == null || sessionUser.getEmail() == null) {
+			System.out.println("Auth session is unset!!!!");
+			fc.addMessage("editPostForm:titleOfPost", new FacesMessage("Please log in before editing any posts!"));
+			return ""; // stay on page
+		}
+		
+		String authorId = sessionUser.getEmail();
+		if(authorId != null) deletedPost.setAuthorId(authorId);
+		
+		postService.deletePost(String.valueOf(deletedPost.getId()), deletedPost);
+		
+		return ("chooseEditCreatePosts.xhtml?faces-redirect=true");
+	}
 }

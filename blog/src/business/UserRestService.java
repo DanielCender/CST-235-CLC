@@ -15,7 +15,7 @@ import beans.User;
 @RequestScoped
 @Path("/users")
 @Produces({ "application/xml", "application/json" })
-public class UserRestService implements UserRestServiceInterface {
+public class UserRestService {
 
 	@Inject
 	private UserAuthenticationService service;

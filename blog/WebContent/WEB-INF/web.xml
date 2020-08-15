@@ -67,8 +67,8 @@
        <auth-method>FORM</auth-method>
        <realm-name>ApplicationRealm</realm-name>
        <form-login-config>
-           <form-login-page>/faces/LoginForm.xhtml</form-login-page>
-           <form-error-page>/faces/LoginError.xhtml</form-error-page>
+           <form-login-page>/securityLogin.xhtml</form-login-page>
+           <form-error-page>/LoginError.xhtml</form-error-page>
        </form-login-config>
    </login-config>
  <security-role>

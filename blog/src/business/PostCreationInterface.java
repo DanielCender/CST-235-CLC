@@ -6,6 +6,11 @@ import javax.ejb.Local;
 
 import beans.Post;
 
+/**
+ * 
+ * Interface designed for business logic handling post creation
+ *
+ */
 @Local
 public interface PostCreationInterface {
 

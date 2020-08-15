@@ -15,6 +15,11 @@ import javax.inject.Inject;
 
 import beans.Post;
 
+/**
+ * 
+ * Implementation of the class PostDataAccessObject for performing CRUD operations on Post objects.
+ *
+ */
 @Stateless
 @Local(PostDataAccessInterface.class)
 @LocalBean

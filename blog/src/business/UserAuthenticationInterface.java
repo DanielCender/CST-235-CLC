@@ -6,6 +6,11 @@ import javax.ejb.Local;
 
 import beans.User;
 
+/**
+ * 
+ * Interface designed for the business logic of user authentication.
+ *
+ */
 @Local
 public interface UserAuthenticationInterface {
 	

@@ -11,6 +11,11 @@ import javax.ws.rs.core.MediaType;
 
 import beans.Post;
 
+/**
+ * 
+ * Interface for REST business services on blog posts.
+ *
+ */
 @RequestScoped
 @Path("/posts")
 @Produces({ "application/xml", "application/json" })

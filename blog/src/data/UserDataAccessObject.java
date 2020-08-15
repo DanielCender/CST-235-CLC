@@ -3,7 +3,6 @@ package data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -16,6 +15,11 @@ import javax.inject.Inject;
 
 import beans.User;
 
+/**
+ * 
+ * Implementation of the class UserDataAccessObject designed for handling CRUD operations of User Objects.
+ *
+ */
 @Stateless
 @Local(UserDataAccessInterface.class)
 @LocalBean

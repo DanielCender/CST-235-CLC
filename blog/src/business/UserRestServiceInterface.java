@@ -11,6 +11,11 @@ import javax.ws.rs.core.MediaType;
 
 import beans.User;
 
+/**
+ * 
+ * Interface designed to handle REST request involving users information
+ *
+ */
 @RequestScoped
 @Path("/users")
 @Produces({ "application/xml", "application/json" })

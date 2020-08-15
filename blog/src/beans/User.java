@@ -7,6 +7,11 @@ import javax.faces.view.ViewScoped;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+/**
+ * 
+ * Managed bean holding information on a single user including first and last name, username and password, and email.
+ *
+ */
 @ManagedBean(name="user")
 @ViewScoped
 public class User implements Serializable{

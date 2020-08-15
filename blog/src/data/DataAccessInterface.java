@@ -7,6 +7,12 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+/**
+ * 
+ * Interface designed for implementing different Database Access Objects.
+ *
+ * @param <T> generic type for CRUD operations of each Data Access Object.
+ */
 @Local
 public interface DataAccessInterface<T> {
 	

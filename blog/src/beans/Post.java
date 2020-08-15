@@ -7,6 +7,11 @@ import javax.faces.view.ViewScoped;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+/**
+ * 
+ * Managed bean to hold information on a single post of a blog.
+ *
+ */
 @ManagedBean(name="post")
 @ViewScoped
 public class Post implements Serializable {

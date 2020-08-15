@@ -11,6 +11,11 @@ import javax.inject.Inject;
 import beans.User;
 import business.UserAuthenticationInterface;
 
+/**
+ * 
+ * Managed bean for registration form control.
+ *
+ */
 @ManagedBean(name="registrationFormController")
 @ViewScoped
 public class RegistrationFormController implements Serializable{
@@ -22,7 +27,7 @@ public class RegistrationFormController implements Serializable{
 	
 
 	/**
-	 * Takes in submit request from registration form
+	 * Takes in a submit request from registration form
 	 * @param newUser The user the is going to be added
 	 * @return A String to either the login.xhtml page for success or a return to the register.xhtml page on failure
 	 */

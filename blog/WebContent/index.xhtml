@@ -14,6 +14,31 @@
 		</ui:define>
 		
 		<ui:define name="content">
+		<div class="formWrapper">
+			<div class="regBlock">
+				<div style="display: block; text-align: left">
+					<h2>FIND OUT WHO WE ARE</h2>
+				</div>
+			</div>
+			<a href="about.xhtml">
+				<h:graphicImage library="images" name="about.jpg" styleClass="cropped"/>
+			</a>
+			<br />
+			<div class="regBlock">
+				<div style="display: block">
+					<ul class="postList">
+    					<ui:repeat value="#{postCreationController.posts}" var="post" size="1">
+		        			<li>
+		            			<h:button value="#{post.postTitle}" outcome="viewPost.xhtml?id=#{post.id}" styleClass="large"></h:button>
+		        			</li>
+   						</ui:repeat>
+					</ul>
+				</div>
+				<div style="display: block">
+					<h:button value="SEE LATEST POSTS" outcome="postFeed.xhtml" styleClass="large"></h:button>
+				</div>
+			</div>
+		</div>
 
 		</ui:define>
 		

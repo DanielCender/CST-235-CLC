@@ -12,6 +12,11 @@ import javax.ws.rs.core.MediaType;
 
 import beans.Post;
 
+/**
+ * 
+ * Implementation class of post rest services interface.
+ *
+ */
 @RequestScoped
 @Path("/posts")
 @Produces({ "application/xml", "application/json" })
@@ -20,6 +25,11 @@ public class PostsRestService implements PostRestServiceInterface {
 	@Inject
 	private PostBusinessService service;
 	
+	/**
+	 * retrieves a list of posts.
+	 * @param count the number of posts to retrieve.
+	 * @return List<Post> of the first "count" post in the database.
+	 */
 	@GET
 	@Path("/{count}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -34,7 +44,11 @@ public class PostsRestService implements PostRestServiceInterface {
 		}
 	}
 	
-
+	/**
+	 * retrieves a single post by id.
+	 * @param id the ID of the post to retrieve.
+	 * @return Post the post from the database.
+	 */
 	@GET
 	@Path("/post/{id}")
 	@Produces(MediaType.APPLICATION_JSON)

@@ -12,14 +12,24 @@ import javax.ws.rs.core.MediaType;
 
 import beans.User;
 
+/**
+ * 
+ * Implementation of the class UserRestService.
+ *
+ */
 @RequestScoped
 @Path("/users")
 @Produces({ "application/xml", "application/json" })
-public class UserRestService implements UserRestServiceInterface {
+public class UserRestService {
 
 	@Inject
 	private UserAuthenticationService service;
 	
+	/**
+	 * Retrieves a list of users with the given length
+	 * @param count the number of users to retrieve.
+	 * @return List<User> list of users from the database.
+	 */
 	@GET
 	@Path("/{count}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -33,6 +43,11 @@ public class UserRestService implements UserRestServiceInterface {
 		}
 	}
 	
+	/**
+	 * Retrieves a single user from the database.
+	 * @param email the email to use in the search for the user.
+	 * @return User the user found with matching email.
+	 */
 	@GET
 	@Path("/user/{email}")
 	@Produces(MediaType.APPLICATION_JSON)

@@ -7,7 +7,11 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
 
-
+/**
+ * 
+ * Managed bean used for authentication. This bean was used early on in the project before database authentication was added.
+ *
+ */
 @ManagedBean(name="userAuthentication", eager=true)
 @ApplicationScoped
 public class UserAuthentication {

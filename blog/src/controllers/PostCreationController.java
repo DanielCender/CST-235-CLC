@@ -14,6 +14,10 @@ import beans.Post;
 import beans.User;
 import business.PostBusinessInterface;
 
+/**
+ * Managed bean to handle Post creation.
+ *
+ */
 @ManagedBean
 @ViewScoped
 public class PostCreationController implements Serializable {
@@ -24,12 +28,19 @@ public class PostCreationController implements Serializable {
 	
 	private List<Post> posts;
 	
+	/**
+	 * Initializes the bean
+	 */
 	@PostConstruct
     public void init() {
 		System.out.println("**** Ran init ***");
        posts = postService.getPosts();
     }
 
+	/**
+	 * Method to retrieve a list of posts and also print them to the console.
+	 * @return List<Post> the list of posts in the database
+	 */
     public List<Post> getPosts() {
     	System.out.println("**** Ran getPosts now ***");
     	System.out.println("Posts Content Length: " + posts.size());

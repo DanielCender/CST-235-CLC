@@ -14,6 +14,11 @@ import beans.User;
 import business.PostBusinessInterface;
 import business.UserAuthenticationService;
 
+/**
+ * 
+ * Managed bean for editing a single post.
+ *
+ */
 @ManagedBean
 @ViewScoped
 public class PostEditorController  implements Serializable {
@@ -36,6 +41,9 @@ public class PostEditorController  implements Serializable {
 		return author;
 	}
 	
+	/**
+	 * Initializing method for post editing.
+	 */
 	@PostConstruct
 	public void postConstruct() {
 		System.out.println("Running init for editor controller");
@@ -78,7 +86,11 @@ public class PostEditorController  implements Serializable {
 		return ("chooseEditCreatePosts.xhtml?faces-redirect=true");
 	}
 	
-	// Method for handling deletion of posts
+	/** 
+	 * Method for handling deletion of posts.
+	 * @param deletedPost post to be deleted.
+	 * @return String redirect string for page after deletion.
+	 */
 	public String onDelete(Post deletedPost) {
 		
 		System.out.println("Deleted post item: " + deletedPost.toString());

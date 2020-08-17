@@ -9,6 +9,11 @@ import javax.inject.Inject;
 import business.UserAuthenticationInterface;
 import beans.User;
 
+/**
+ * 
+ * Managed bean to handle login form requests.
+ *
+ */
 @ManagedBean
 @ViewScoped
 public class LoginFormController {
@@ -16,6 +21,11 @@ public class LoginFormController {
     @Inject
     private UserAuthenticationInterface auth;
    
+    /**
+     * Attempts to login a user with the given credentials.
+     * @param user the credentials to use for login attempt.
+     * @return String indicating which page to return to after login attempt.
+     */
 	public String onSubmit(User user) {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		if(auth.validateLogin(user.getEmail(), user.getPassword())) {
@@ -32,6 +42,10 @@ public class LoginFormController {
 		return "login.xhtml";
 	}
 	
+	/**
+	 * Logs the current session user out and ends the current session.
+	 * @return String for the page to navigate to after ending the session.
+	 */
 	public String onLogout() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		fc.getExternalContext().invalidateSession();
